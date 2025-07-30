@@ -1,34 +1,45 @@
-"use client";
-// 1. app/page.js
-// Replace the contents of your page.js with this new structure.
-// Note the 'use client' directive and the new component hierarchy.
+// 3. Replace the contents of: app/page.js
 
+'use client';
 
+import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ScrollControls } from '@react-three/drei';
 import Scene from '@/components/Scene';
 import Overlay from '@/components/Overlay';
+import Loader from '@/components/Loader';
+import Navbar from '@/components/Navbar';
 
 export default function Home() {
-  return (
-    // The main container for our 3D experience
-    <div style={{ height: '100vh', width: '100vw' }}>
-      {/* The Canvas component is the root of our 3D scene. */}
-      <Canvas
-        camera={{ position: [0, 0, 10], fov: 35 }}
-        gl={{ antialias: true }}
-      >
-        {/* ScrollControls must be placed inside the Canvas. */}
-        <ScrollControls pages={4} damping={0.2}>
-          
-          {/* Our 3D models and logic now live inside ScrollControls. */}
-          <Scene />
-          
-          {/* The HTML overlay is also a child of ScrollControls. */}
-          <Overlay />
+  const scrollRef = useRef();
 
-        </ScrollControls>
-      </Canvas>
-    </div>
+  const handleSectionChange = (sectionIndex) => {
+    if (scrollRef.current) {
+      const scrollContainer = scrollRef.current.el;
+      const pageHeight = scrollContainer.clientHeight;
+      scrollContainer.scrollTo({
+        top: pageHeight * sectionIndex,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  return (
+    <>
+      <Navbar onSectionChange={handleSectionChange} />
+      <div style={{ height: '100vh', width: '100vw' }}>
+        <Canvas
+          camera={{ position: [0, 0, 10], fov: 35 }}
+          gl={{ antialias: true }}
+        >
+          <Suspense fallback={<Loader />}>
+            <ScrollControls pages={5} damping={0.2} ref={scrollRef}>
+              <Scene />
+              <Overlay />
+            </ScrollControls>
+          </Suspense>
+        </Canvas>
+      </div>
+    </>
   );
 }

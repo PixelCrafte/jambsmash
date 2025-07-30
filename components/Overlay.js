@@ -1,17 +1,16 @@
-// 2. components/Overlay.js
-// Create this new file in your components folder.
-// This component will hold all the scrollable HTML content.
+// 5. Replace the contents of: components/Overlay.js
+
+'use client';
 
 import { Scroll } from '@react-three/drei';
 
 export default function Overlay() {
   return (
-    // The <Scroll> component from drei is a scrollable div
     <Scroll html style={{ width: '100%' }}>
       <div className="w-screen">
         
         {/* Section 1: Hero */}
-        <section className="h-screen flex flex-col justify-center items-center p-4">
+        <section className="h-screen flex flex-col justify-center items-center p-4 pt-20">
           <h1 className="text-4xl md:text-6xl font-bold text-center">
             <span className="text-brand-orange">JAMBSMASH</span> INVESTMENTS
           </h1>
@@ -46,7 +45,26 @@ export default function Overlay() {
           </div>
         </section>
 
-        {/* Section 4: Contact */}
+        {/* Section 4: Team */}
+        <section className="h-screen flex flex-col justify-center items-center p-8 md:p-20">
+          <div className="w-full max-w-4xl text-center">
+            <h2 className="text-3xl font-bold text-brand-orange mb-12">Meet the Directors</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="bg-brand-dark/70 backdrop-blur-md p-8 rounded-lg">
+                <h3 className="text-2xl font-bold text-brand-light">Pride Mashiyani</h3>
+                <p className="text-brand-accent mt-2">B.Tech Electronic Engineering</p>
+                <p className="text-brand-gray">HND Electrical Power Engineering</p>
+              </div>
+              <div className="bg-brand-dark/70 backdrop-blur-md p-8 rounded-lg">
+                <h3 className="text-2xl font-bold text-brand-light">Wilbert Magaramagara</h3>
+                <p className="text-brand-accent mt-2">M.Sc Project Management</p>
+                <p className="text-brand-gray">M.Tech Sensor Technology</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Contact */}
         <section className="h-screen flex flex-col justify-center items-center p-4">
           <h2 className="text-3xl font-bold text-brand-orange mb-4">Let's Build the Future</h2>
           <p className="text-lg text-brand-light mb-8">Get in touch to discuss your project.</p>
@@ -62,3 +80,4 @@ export default function Overlay() {
     </Scroll>
   );
 }
+
