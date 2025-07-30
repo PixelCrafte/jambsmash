@@ -23,7 +23,7 @@ export default function Overlay() {
         </section>
 
         {/* Section 2: Vision */}
-        <section className="h-screen flex justify-start items-center p-8 md:p-20">
+        <section className="flex justify-start items-center p-8 md:p-20">
           <div className="max-w-md bg-brand-dark/70 backdrop-blur-md p-8 rounded-lg">
             <h2 className="text-3xl font-bold text-brand-orange mb-4">Our Vision</h2>
             <p className="text-brand-light">
