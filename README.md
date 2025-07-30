@@ -3,4 +3,5 @@
 - [x] Logo Design
 - [x] Business Card
 - [ ] Domain Connection
-- [ ] Emails 
+- [ ] Emails
+- [ ] Website 
