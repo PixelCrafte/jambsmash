@@ -1,5 +1,3 @@
-// 5. Replace the contents of: components/Overlay.js
-
 'use client';
 
 import { Scroll } from '@react-three/drei';
@@ -8,7 +6,7 @@ export default function Overlay() {
   return (
     <Scroll html style={{ width: '100%' }}>
       <div className="w-screen">
-        
+
         {/* Section 1: Hero */}
         <section className="h-screen flex flex-col justify-center items-center p-4 pt-20">
           <h1 className="text-4xl md:text-6xl font-bold text-center">

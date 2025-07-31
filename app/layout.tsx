@@ -1,5 +1,8 @@
 // 3. app/layout.js
 // This is your root layout.
+//import Navbar from '@/components/Navbar';
+//import Footer from '@/components/Footer';
+
 
 import "./globals.css";
 
