@@ -32,8 +32,8 @@ export default function Overlay() {
           
           <div className="text-center z-20 relative">
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none mb-4 text-shadow-lg">
-              <span className="inline-block animate-pulse text-brand-orange drop-shadow-2xl">JAMB</span>
-              <span className="inline-block animate-bounce delay-300 text-brand-light">SMASH</span>
+              <span className="text-brand-orange drop-shadow-[0_2px_10px_rgba(220,113,62,0.4)]">JAMB</span>
+              <span className="text-brand-light">SMASH</span>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-accent mt-2 tracking-widest uppercase">Electronics</div>
             </h1>
             <p className="mt-6 md:mt-8 text-lg sm:text-xl md:text-2xl text-brand-light font-light max-w-4xl mx-auto leading-relaxed bg-brand-dark/30 backdrop-blur-sm rounded-xl p-4">
