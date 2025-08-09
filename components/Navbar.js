@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
+import Image from "next/image";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +40,7 @@ export default function Navbar() {
               <a href="/" className="group flex items-center space-x-3">
                 {/* Actual Logo with 360° spin animation */}
                 <div className="relative">
-                  <img 
+                  <Image
                     src="/icons/jambsmash_logo.svg" 
                     alt="Jambsmash Logo"
                     className="w-10 h-10 md:w-12 md:h-12 transition-all duration-700 group-hover:rotate-[360deg] group-active:rotate-[360deg] animate-[spin_1s_ease-out]"

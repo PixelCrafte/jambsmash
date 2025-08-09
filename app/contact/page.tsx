@@ -50,7 +50,7 @@ export default function ContactPage() {
   return (
     <>
       <Head>
-        <title>Contact Jambstronics Technologies | Get in Touch with Zimbabwe's Premier Engineering Firm</title>
+        <title>Contact Jambstronics Technologies | Get in Touch with Zimbabwe&#39;s Premier Engineering Firm</title>
         <meta name="description" content="Contact Jambstronics Technologies for expert engineering solutions in telecommunications, automation, and electrical systems. Located in Harare, Zimbabwe. Call +263 773 755 716/717" />
         <meta name="keywords" content="contact Jambstronics, engineering consultation Zimbabwe, telecommunications support, automation services Harare, electrical systems contact" />
         <meta property="og:title" content="Contact Jambstronics Technologies - Expert Engineering Support" />

@@ -167,7 +167,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                 <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-brand-orange to-brand-accent rounded-full"></div>
               </h2>
               <p className="text-xl sm:text-2xl md:text-3xl text-brand-light max-w-4xl mx-auto leading-relaxed font-light">
-                Comprehensive solutions engineered to power Zimbabwe's industrial future
+                Comprehensive solutions engineered to power Zimbabwe&#39;s industrial future
               </p>
             </div>
 
@@ -358,11 +358,11 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                     </div>
                     
                     <blockquote className="text-brand-light/90 text-xl md:text-2xl italic relative max-w-4xl mx-auto">
-                      <span className="text-6xl text-brand-orange/30 absolute -top-4 -left-4">"</span>
+                      <span className="text-6xl text-brand-orange/30 absolute -top-4 -left-4">{'"'}</span>
                       <span className="relative z-10 px-8">
                         Leading innovation in engineering solutions with passion, expertise, and an unwavering commitment to excellence.
                       </span>
-                      <span className="text-6xl text-brand-orange/30 absolute -bottom-8 -right-4">"</span>
+                      <span className="text-6xl text-brand-orange/30 absolute -bottom-8 -right-4">{'"'}</span>
                     </blockquote>
                   </div>
                 </div>
@@ -390,7 +390,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                 </span>
               </h2>
               <p className="text-xl sm:text-2xl md:text-3xl text-brand-light max-w-4xl mx-auto leading-relaxed font-light">
-                Trusted by Zimbabwe's leading industries
+                Trusted by Zimbabwe&#39;s leading industries
               </p>
             </div>
 
@@ -410,11 +410,11 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                   
                   {/* Quote with better transitions */}
                   <blockquote className="text-2xl md:text-3xl text-brand-light text-center leading-relaxed mb-10 italic relative transform transition-all duration-700 ease-in-out">
-                    <span className="text-8xl text-brand-orange/20 absolute -top-8 left-0">"</span>
+                    <span className="text-8xl text-brand-orange/20 absolute -top-8 left-0">{'"'}</span>
                     <span className="relative z-10 px-8">
                       {testimonials[currentTestimonial].quote}
                     </span>
-                    <span className="text-8xl text-brand-orange/20 absolute -bottom-8 right-0">"</span>
+                    <span className="text-8xl text-brand-orange/20 absolute -bottom-8 right-0">{'"'}</span>
                   </blockquote>
                   
                   {/* Client Info with enhanced styling */}
@@ -499,7 +499,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
               className="text-6xl md:text-7xl lg:text-8xl font-black text-brand-orange mb-8 tracking-tighter"
             >
               <span className="bg-gradient-to-r from-brand-orange to-brand-accent bg-clip-text text-transparent">
-                Let's Engineer Your Future
+                Let&#39;s Engineer Your Future
               </span>
             </h2>
             

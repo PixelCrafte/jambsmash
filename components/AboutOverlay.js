@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, ArrowDown, Users, Award, Target, Lightbulb, Shield, Zap, Sun, Globe, Leaf, Building, Factory, Home, Briefcase, ChevronRight, Star, CheckCircle } from 'lucide-react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 // Mock components for Navbar and Footer
 //const Navbar = () => <nav className="fixed top-0 w-full z-50 bg-brand-dark/20 backdrop-blur-xl border-b border-brand-orange/20 h-16"></nav>;
@@ -260,7 +261,7 @@ const ClientCard = ({ name, sector, logo, testimonial, delay = 0 }) => {
         </div>
       </div>
       <p className="text-brand-light/90 italic leading-relaxed group-hover:text-brand-light transition-colors duration-300">
-        "{testimonial}"
+       {`"${testimonial}"`}
       </p>
       <div className="flex mt-4">
         {[...Array(5)].map((_, i) => (
@@ -297,12 +298,12 @@ const SustainabilityCard = ({ title, description, icon: Icon, delay = 0 }) => {
 
 // Floating action button
 const FloatingCTA = () => (
-  <div className="fixed bottom-8 right-8 z-30">
+  <Link href="/contact" className="fixed bottom-8 right-8 z-30">
     <button className="group flex items-center space-x-3 bg-gradient-to-r from-brand-orange to-brand-accent hover:from-brand-accent hover:to-brand-orange text-white px-6 py-4 rounded-full shadow-2xl hover:shadow-brand-orange/50 transform hover:scale-105 transition-all duration-300">
-      <span className="font-semibold">Let's Connect</span>
+      <span className="font-semibold">Let&#39;s Connect</span>
       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
     </button>
-  </div>
+  </Link>
 );
 
 export default function AboutOverlay() {
@@ -424,7 +425,7 @@ export default function AboutOverlay() {
                 <h3 className="text-3xl lg:text-4xl font-bold text-white">Our Mission</h3>
               </div>
               <p className="text-xl lg:text-2xl text-brand-light/90 leading-relaxed">
-                To provide added value solutions through a no-compromise quality engineering approach that sustains long-term reliability and functionality, exceeding our clients' expectations at every turn.
+                To provide added value solutions through a no-compromise quality engineering approach that sustains long-term reliability and functionality, exceeding our clients&#39; expectations at every turn.
               </p>
             </div>
           </div>
@@ -496,7 +497,7 @@ export default function AboutOverlay() {
             Trusted by Leading Organizations
           </h2>
           <p className="text-xl text-brand-light/80 max-w-3xl mx-auto bg-brand-dark/10 backdrop-blur-2xl p-6 rounded-2xl border border-brand-orange/20">
-            From industrial giants to innovative startups, we've partnered with diverse clients across multiple sectors
+            From industrial giants to innovative startups, we&#39;ve partnered with diverse clients across multiple sectors
           </p>
         </div>
         
@@ -662,7 +663,7 @@ export default function AboutOverlay() {
           <p className="text-xl text-brand-light/90 leading-relaxed text-center">
             Our leadership team combines decades of technical expertise with visionary thinking, fostering a culture of innovation, 
             continuous learning, and excellence. We believe in empowering our team to push boundaries, embrace challenges, 
-            and deliver solutions that not only meet but exceed our clients' expectations.
+            and deliver solutions that not only meet but exceed our clients&#39;expectations.
           </p>
         </div>
       </Section>
@@ -781,14 +782,18 @@ export default function AboutOverlay() {
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
-            <button className="group inline-flex items-center space-x-2 bg-gradient-to-r from-brand-orange to-brand-accent hover:from-brand-accent hover:to-brand-orange text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl hover:shadow-brand-orange/50 transform hover:scale-105 transition-all duration-300">
-              <span>Start Your Project</span>
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="group inline-flex items-center space-x-2 border-2 border-white hover:border-brand-orange text-white hover:text-brand-orange px-10 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all duration-300">
-              <span>Explore Services</span>
-              <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <Link href="/contact">
+                <button className="group inline-flex items-center space-x-2 bg-gradient-to-r from-brand-orange to-brand-accent hover:from-brand-accent hover:to-brand-orange text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl hover:shadow-brand-orange/50 transform hover:scale-105 transition-all duration-300">
+                  <span>Start Your Project</span>
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </button>
+            </Link>
+            <Link href="/services">
+                <button className="group inline-flex items-center space-x-2 border-2 border-white hover:border-brand-orange text-white hover:text-brand-orange px-10 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all duration-300">
+                  <span>Explore Services</span>
+                  <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </button>
+            </Link>
           </div>
 
           {/* Contact Info */}

@@ -4,7 +4,6 @@ import { Suspense, useState, useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import AboutScene from '@/components/AboutScene';
 import Overlay from '@/components/AboutOverlay';
-import Loader from './Loader';
 import Head from 'next/head';
 
 // Enhanced loading component

@@ -63,61 +63,6 @@ const InteractiveMapFinal = () => {
   );
 };
 
-const InteractiveMap = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  return (
-    <div className="relative group">
-      <div 
-        className={`relative overflow-hidden rounded-2xl border-2 transition-all duration-500 ${
-          isHovered ? 'border-brand-orange scale-105' : 'border-brand-orange/30'
-        }`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Map placeholder with enhanced styling */}
-        <div className="h-64 bg-gradient-to-br from-brand-dark/90 to-brand-dark/60 flex items-center justify-center relative overflow-hidden">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="grid grid-cols-8 grid-rows-8 h-full">
-              {[...Array(64)].map((_, i) => (
-                <div key={i} className="border border-brand-orange/20"></div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Location marker */}
-          <div className="relative z-10">
-            {/*<div className="w-16 h-16 bg-gradient-to-r from-brand-orange to-brand-accent rounded-full flex items-center justify-center shadow-2xl animate-pulse">
-              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="absolute top-0 left-0 w-16 h-16 bg-brand-orange/30 rounded-full animate-ping"></div>*/}
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3797.013346536943!2d30.965762073409664!3d-17.88482947789131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a1496feded1d%3A0xb65a732e02c1411c!2s7%20Tilbury%20Rd%2C%20Harare%2C%20Zimbabwe!5e0!3m2!1sen!2sin!4v1754569434583!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-          
-          {/* Location info */}
-          <div className="absolute bottom-4 left-4 right-4 bg-brand-dark/80 backdrop-blur-sm rounded-lg p-3">
-            <p className="text-brand-orange font-semibold">📍 Jambstronics Technologies</p>
-            <p className="text-brand-light/80 text-sm">7 Tilbury Road, Willowvale, Harare</p>
-          </div>
-        </div>
-        
-        {/* Hover overlay */}
-        <div className={`absolute inset-0 bg-gradient-to-r from-brand-orange/20 to-brand-accent/20 transition-opacity duration-500 ${
-          isHovered ? 'opacity-100' : 'opacity-0'
-        }`}>
-          <div className="flex items-center justify-center h-full">
-            <button className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full font-semibold hover:bg-white/30 transition-all">
-              View on Google Maps
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 // Animated contact info card
 const ContactInfoCard = ({ icon, title, info, links, delay = 0 }) => {
@@ -509,7 +454,7 @@ export default function Overlay() {
           
           <h1 className="text-5xl md:text-7xl font-black mb-6">
             <span className="bg-gradient-to-r from-white to-brand-light bg-clip-text text-transparent">
-              Let's Build
+              Let&#39;s Build
             </span>
             <br />
             <span className="bg-gradient-to-r from-brand-orange to-brand-accent bg-clip-text text-transparent">
@@ -559,7 +504,7 @@ export default function Overlay() {
               <div className="mb-8">
                 <h2 className="text-3xl font-bold text-white mb-4">Start Your Project</h2>
                 <p className="text-brand-light/80">
-                  Fill out the form below and we'll get back to you with a detailed consultation within 24 hours.
+                  Fill out the form below and we&#39;ll get back to you with a detailed consultation within 24 hours.
                 </p>
               </div>
               <ContactForm />
@@ -573,7 +518,7 @@ export default function Overlay() {
             <h2 className="text-4xl font-bold bg-gradient-to-r from-brand-orange to-brand-accent bg-clip-text text-transparent mb-4">
               Find Us
             </h2>
-            <p className="text-brand-light/80">Located in the heart of Harare's business district</p>
+            <p className="text-brand-light/80">Located in the heart of Harare&#39;s business district</p>
           </div>
           <InteractiveMapFinal />
         </div>

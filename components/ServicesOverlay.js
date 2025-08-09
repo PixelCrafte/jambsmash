@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Shield, Cpu, Settings, Sun, Network, Monitor, Zap, CheckCircle2, Star, ArrowDown } from 'lucide-react';
 import  Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 //Mock components for Navbar and Footer
 //const Navbar = () => <nav className="fixed top-0 w-full z-50 bg-brand-dark/20 backdrop-blur-xl border-b border-brand-orange/20 h-16"></nav>;
 //const Footer = () => <footer className="w-full bg-brand-dark/20 backdrop-blur-xl border-t border-brand-orange/20 h-20"></footer>;
@@ -36,7 +37,7 @@ const ServiceCard = ({ title, description, icon: Icon, features, imageUrl, delay
       
       {/* Hero Image */}
       <div className="relative overflow-hidden rounded-t-3xl">
-        <img 
+        <Image 
           src={imageUrl} 
           alt={title} 
           className={`w-full h-56 lg:h-64 object-cover transition-all duration-700 ${
@@ -377,7 +378,7 @@ export default function ServicesOverlay() {
           
           <p className="mt-8 max-w-3xl mx-auto text-xl md:text-2xl text-brand-light/90 leading-relaxed">
             Our team of specialists is ready to design and implement solutions tailored to your specific requirements. 
-            Let's collaborate to bring your vision to life with precision engineering and unmatched expertise.
+            Let&#39;s collaborate to bring your vision to life with precision engineering and unmatched expertise.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12">

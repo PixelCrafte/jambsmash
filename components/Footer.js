@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 
 import { 
   MapPin, 
@@ -70,7 +71,7 @@ export default function Footer() {
               <div className="group">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="relative group">
-                    <img 
+                    <Image 
                       src="/icons/jambsmash_logo.svg" 
                       alt="Jambsmash Logo"
                       width="56" 
