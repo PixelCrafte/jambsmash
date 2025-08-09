@@ -15,6 +15,7 @@ body {
   background-color: theme(colors.brand.dark);
   color: theme(colors.brand.light);
   overflow-x: hidden; /* Prevents horizontal scroll */
+  overflow: hidden; /* to be removed */
 }
 
 /* Styling for scrollbar to match the theme */
