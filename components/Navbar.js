@@ -43,6 +43,8 @@ export default function Navbar() {
                   <Image
                     src="/icons/jambsmash_logo.svg" 
                     alt="Jambsmash Logo"
+                    width={40} // matches w-10 (10 × 4px)
+                    height={40}
                     className="w-10 h-10 md:w-12 md:h-12 transition-all duration-700 group-hover:rotate-[360deg] group-active:rotate-[360deg] animate-[spin_1s_ease-out]"
                     onError={(e) => {
                       // Fallback to PNG if SVG fails

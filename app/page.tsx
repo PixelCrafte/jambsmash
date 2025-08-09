@@ -1,12 +1,12 @@
 'use client';
 import Head from "next/head";
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 
 import Scene from '@/components/Scene_Alternative2';
 import Overlay from '@/components/Overlay';
 // MODIFICATION: We will create this new component in the next step
-import { SceneLoader } from '@/components/SceneLoader';
+import SceneLoader from '@/components/SceneLoader';
 
 function SEOHead() {
   return (
@@ -142,6 +142,12 @@ function SEOHead() {
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      const timer = setTimeout(() => setIsLoading(false), 2500);
+      return () => clearTimeout(timer);
+    }, []);
 
   const handleScroll = (event) => {
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget;
@@ -154,6 +160,10 @@ export default function Home() {
     const progress = scrollTop / (scrollHeight - clientHeight);
     setScrollProgress(progress);
   };
+
+  if (isLoading) {
+    return <SceneLoader />
+  }
 
   return (
     <div className="relative w-screen h-screen bg-[#0a0a0a]">
@@ -175,8 +185,8 @@ export default function Home() {
         </Suspense>
         
         {/* MODIFICATION: The loader logic is now handled inside the Canvas */}
-        <SceneLoader />
       </Canvas>
+      {/*<SceneLoader />*/}
       
       {/* MODIFICATION: The original Loader component is removed from here */}
       

@@ -39,7 +39,9 @@ const ServiceCard = ({ title, description, icon: Icon, features, imageUrl, delay
       <div className="relative overflow-hidden rounded-t-3xl">
         <Image 
           src={imageUrl} 
-          alt={title} 
+          alt={title}
+          width={600}
+          height={224}
           className={`w-full h-56 lg:h-64 object-cover transition-all duration-700 ${
             isActive || isHovered ? 'scale-110' : 'scale-100'
           }`}

@@ -3,7 +3,7 @@
 
 'use client';
 
-import { Suspense, useState, useRef } from 'react';
+import { Suspense, useState, useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import ServicesScene from '@/components/ServicesScene';
 import Overlay from '@/components/ServicesOverlay';
@@ -12,6 +12,12 @@ import Loader from '@/components/SceneLoader';
 export default function ServicesPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const scrollRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      const timer = setTimeout(() => setIsLoading(false), 2500);
+      return () => clearTimeout(timer);
+    }, []);
 
   const handleScroll = (event) => {
     const { scrollTop, scrollHeight, clientHeight } = event.target;
@@ -19,6 +25,10 @@ export default function ServicesPage() {
     const scrollFraction = maxScroll > 0 ? scrollTop / maxScroll : 0;
     setScrollPosition(scrollFraction);
   };
+
+  if (isLoading) {
+    return <Loader />
+  }
 
   return (
     <main className="w-screen h-screen relative overflow-hidden">
@@ -39,6 +49,7 @@ export default function ServicesPage() {
           </Suspense>
         </Canvas>
       </div>
+      {/*<Loader />*/}
 
       {/* HTML Overlay */}
       <div
