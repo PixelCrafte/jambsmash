@@ -7,7 +7,7 @@ import { Suspense, useState, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import ServicesScene from '@/components/ServicesScene';
 import Overlay from '@/components/ServicesOverlay';
-import Loader from '@/components/Loader';
+import Loader from '@/components/SceneLoader';
 
 export default function ServicesPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
