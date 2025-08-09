@@ -38,23 +38,17 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex items-center">
               <a href="/" className="group flex items-center space-x-3">
-                {/* Logo Placeholder with 360° spin animation */}
+                {/* Actual Logo with 360° spin animation */}
                 <div className="relative">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-brand-orange via-brand-accent to-brand-orange rounded-xl flex items-center justify-center transition-all duration-700 group-hover:rotate-[360deg] group-active:rotate-[360deg] animate-spin-once shadow-lg shadow-brand-orange/30">
-                    {/* Placeholder for SVG - replace src with your logo */}
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      className="text-brand-dark transition-transform duration-700 group-hover:scale-110"
-                      fill="currentColor"
-                    >
-                      {/* Placeholder geometric design - replace with your actual logo path */}
-                      <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.33L19.5 8.5L12 12.67L4.5 8.5L12 4.33ZM4 10.17L11 14.33V19.83L4 15.67V10.17ZM13 19.83V14.33L20 10.17V15.67L13 19.83Z"/>
-                    </svg>
-                  </div>
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 w-10 h-10 md:w-12 md:h-12 bg-brand-orange rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-md -z-10"></div>
+                  <img 
+                    src="/icons/jambsmash_logo.svg" 
+                    alt="Jambsmash Logo"
+                    className="w-10 h-10 md:w-12 md:h-12 transition-all duration-700 group-hover:rotate-[360deg] group-active:rotate-[360deg] animate-[spin_1s_ease-out]"
+                    onError={(e) => {
+                      // Fallback to PNG if SVG fails
+                      e.target.src = "/icons/jambsmash_logo.png";
+                    }}
+                  />
                 </div>
                 <div className="hidden sm:block">
                   <h1 className="text-xl md:text-2xl font-black tracking-tight">
@@ -167,17 +161,6 @@ export default function Navbar() {
           onClick={() => setIsOpen(false)}
         ></div>
       )}
-
-      {/* Custom CSS for initial logo spin */}
-      <style jsx>{`
-        @keyframes spin-once {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-once {
-          animation: spin-once 2s ease-in-out;
-        }
-      `}</style>
     </>
   );
 }

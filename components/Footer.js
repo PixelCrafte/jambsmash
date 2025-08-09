@@ -69,21 +69,19 @@ export default function Footer() {
             <div className="lg:col-span-1 space-y-8">
               <div className="group">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="relative">
-                    <div className="w-14 h-14 bg-gradient-to-br from-brand-orange via-brand-accent to-brand-orange rounded-2xl flex items-center justify-center transition-all duration-700 group-hover:rotate-[360deg] group-active:rotate-[360deg] shadow-xl shadow-brand-orange/25" style={{ animation: 'spin 20s linear infinite' }}>
-                      <img 
-                        src="/icons/jambsmash_logo.svg" 
-                        alt="Jambsmash Logo"
-                        width="28" 
-                        height="28" 
-                        className="transition-transform duration-700 group-hover:scale-110 group-active:scale-110"
-                        onError={(e) => {
-                          // Fallback to PNG if SVG fails
-                          e.target.src = "/icons/jambsmash_logo.png";
-                        }}
-                      />
-                    </div>
-                    <div className="absolute inset-0 w-14 h-14 bg-brand-orange rounded-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-lg -z-10"></div>
+                  <div className="relative group">
+                    <img 
+                      src="/icons/jambsmash_logo.svg" 
+                      alt="Jambsmash Logo"
+                      width="56" 
+                      height="56" 
+                      className="w-14 h-14 transition-all duration-700 group-hover:rotate-[360deg] group-active:rotate-[360deg]"
+                      style={{ animation: 'spinOnce 1s ease-out' }}
+                      onError={(e) => {
+                        // Fallback to PNG if SVG fails
+                        e.target.src = "/icons/jambsmash_logo.png";
+                      }}
+                    />
                   </div>
                   <div>
                     <h3 className="text-3xl font-black">
@@ -257,6 +255,14 @@ export default function Footer() {
 
       {/* Bottom glow effect */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-orange/60 to-transparent blur-sm"></div>
+      
+      {/* Custom CSS for logo rotation */}
+      <style jsx>{`
+        @keyframes spinOnce {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </footer>
   );
 }

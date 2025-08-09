@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ArrowDown, Users, Award, Target, Lightbulb, Shield, Zap, Sun, Globe, Leaf, Building, Factory, Home, Briefcase, ChevronRight, Star, CheckCircle } from 'lucide-react';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Mock components for Navbar and Footer
-const Navbar = () => <nav className="fixed top-0 w-full z-50 bg-brand-dark/20 backdrop-blur-xl border-b border-brand-orange/20 h-16"></nav>;
-const Footer = () => <footer className="w-full bg-brand-dark/20 backdrop-blur-xl border-t border-brand-orange/20 h-20"></footer>;
+//const Navbar = () => <nav className="fixed top-0 w-full z-50 bg-brand-dark/20 backdrop-blur-xl border-b border-brand-orange/20 h-16"></nav>;
+//const Footer = () => <footer className="w-full bg-brand-dark/20 backdrop-blur-xl border-t border-brand-orange/20 h-20"></footer>;
 
 // Animated typing effect component
 const TypeWriter = ({ text, delay = 100, className = "" }) => {

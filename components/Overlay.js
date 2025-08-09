@@ -523,8 +523,8 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-accent to-brand-orange opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 rounded-full"></div>
                 <span className="relative z-10 flex items-center">
-                  <span className="text-3xl mr-4 group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300">🚀</span>
-                  Get Free Consultation
+      {/* <span className="text-3xl mr-4 group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300">🚀</span>*/}
+                  Free Consultation
                   <span className="ml-4 text-3xl group-hover:translate-x-2 group-active:translate-x-2 transition-transform duration-300">→</span>
                 </span>
               </a>
