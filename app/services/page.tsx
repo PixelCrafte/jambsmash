@@ -21,12 +21,18 @@ export default function ServicesPage() {
   };
 
   return (
-    <main className="w-screen h-screen relative">
-      {/* Container for the 3D Canvas. It sits in the background. */}
+    <main className="w-screen h-screen relative overflow-hidden">
+      {/* 3D Canvas Background */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <Canvas
-          camera={{ position: [0, 0, 8], fov: 50 }}
-          gl={{ antialias: true }}
+          camera={{ position: [0, 0, 10], fov: 60 }}
+          gl={{
+            antialias: true,
+            alpha: false,
+            powerPreference: "high-performance"
+          }}
+          dpr={[1, 2]}
+          shadows
         >
           <Suspense fallback={<Loader />}>
             <ServicesScene scrollPosition={scrollPosition} />
@@ -34,15 +40,19 @@ export default function ServicesPage() {
         </Canvas>
       </div>
 
-      {/* Container for the HTML Overlay. It's a sibling to the Canvas container
-          and sits on top with a higher z-index. */}
+      {/* HTML Overlay */}
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="absolute top-0 left-0 w-full h-full z-10 overflow-y-auto overflow-x-hidden"
+        className="absolute top-0 left-0 w-full h-full z-10 overflow-y-auto overflow-x-hidden scroll-smooth"
+        style={{
+          background: 'linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.3) 50%, rgba(10, 25, 47, 0.1) 100%)',
+          scrollbarWidth: 'thin',
+          scrollbarColor: '#DC713E #1A3B44'
+        }}
       >
         <Overlay />
       </div>
     </main>
-  );
+    );
 }

@@ -1,366 +1,295 @@
-'use client';
-
-import { useRef, useLayoutEffect, useMemo } from 'react';
+import { useRef, useLayoutEffect, useMemo, useState, useCallback } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
-import { Float, MeshDistortMaterial, Environment } from '@react-three/drei';
+import { Float, MeshDistortMaterial, Environment, Sparkles, Cloud, Stars } from '@react-three/drei';
 import { gsap } from 'gsap';
 import * as THREE from 'three';
 
-// All your 3D model components (CircuitBoard, SolarPanelArray, etc.) remain unchanged.
-// ... (Your model components like CircuitBoard, SolarPanelArray, etc. go here)
-function CircuitBoard({ position, scale = 1 }) {
-  const groupRef = useRef();
-
-  useFrame((state) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
-    }
-  });
-
-  return (
-    <group ref={groupRef} position={position} scale={scale}>
-      {/* Main circuit board */}
-      <mesh>
-        <boxGeometry args={[4, 0.1, 3]} />
-        <meshStandardMaterial color="#0a2a0a" metalness={0.8} roughness={0.2} />
-      </mesh>
-
-      {/* Circuit traces */}
-      {Array.from({ length: 12 }).map((_, i) => (
-        <mesh key={i} position={[
-          (Math.random() - 0.5) * 3.5,
-          0.06,
-          (Math.random() - 0.5) * 2.5
-        ]}>
-          <boxGeometry args={[Math.random() * 0.8 + 0.2, 0.02, 0.05]} />
-          <meshStandardMaterial
-            color="#DC713E"
-            emissive="#DC713E"
-            emissiveIntensity={0.3}
-            metalness={0.9}
-          />
-        </mesh>
-      ))}
-
-      {/* Electronic components */}
-      {Array.from({ length: 8 }).map((_, i) => (
-        <mesh key={`comp-${i}`} position={[
-          (Math.random() - 0.5) * 3,
-          0.15,
-          (Math.random() - 0.5) * 2
-        ]}>
-          <boxGeometry args={[0.3, 0.2, 0.2]} />
-          <meshStandardMaterial color="#1A3B44" metalness={0.7} roughness={0.3} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-function SolarPanelArray({ position, rotation }) {
-  const groupRef = useRef();
-
-  useFrame((state) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.2;
-    }
-  });
-
-  return (
-    <group ref={groupRef} position={position} rotation={rotation}>
-      {Array.from({ length: 9 }).map((_, i) => (
-        <mesh
-          key={i}
-          position={[
-            (i % 3 - 1) * 1.2,
-            0,
-            Math.floor(i / 3 - 1) * 1.2
-          ]}
-        >
-          <boxGeometry args={[1, 0.05, 1]} />
-          <meshStandardMaterial
-            color="#0a1a2a"
-            metalness={0.9}
-            roughness={0.1}
-            emissive="#FFA726"
-            emissiveIntensity={0.1}
-          />
-        </mesh>
-      ))}
-
-      {/* Support structure */}
-      <mesh position={[0, -0.5, 0]}>
-        <cylinderGeometry args={[0.1, 0.1, 1]} />
-        <meshStandardMaterial color="#6B7280" metalness={0.8} />
-      </mesh>
-    </group>
-  );
-}
-function IndustrialGears({ position }) {
+// Your existing IndustrialGears component
+const IndustrialGears = ({ position = [0,0,0], performanceMode = false }) => {
   const gear1Ref = useRef();
   const gear2Ref = useRef();
   const gear3Ref = useRef();
-
+  const gear4Ref = useRef();
+  
   useFrame((state, delta) => {
-    if (gear1Ref.current) gear1Ref.current.rotation.z += delta * 0.5;
-    if (gear2Ref.current) gear2Ref.current.rotation.z -= delta * 0.3;
-    if (gear3Ref.current) gear3Ref.current.rotation.z += delta * 0.4;
+    const speedScale = performanceMode ? 0.3 : 0.5;
+    if (gear1Ref.current) gear1Ref.current.rotation.z += delta * 0.45 * speedScale;
+    if (gear2Ref.current) gear2Ref.current.rotation.z -= delta * 0.32 * speedScale;
+    if (gear3Ref.current) gear3Ref.current.rotation.z += delta * 0.37 * speedScale;
+    if (gear4Ref.current) gear4Ref.current.rotation.z -= delta * 0.5 * speedScale;
   });
 
-  const createGear = (radius, teeth) => {
+  const createAdvancedGear = (radius, teeth, depth = 0.28) => {
     const shape = new THREE.Shape();
     const outerRadius = radius;
-    const innerRadius = radius * 0.8;
-    const toothHeight = radius * 0.1;
-
+    const toothHeight = radius * 0.15;    
     for (let i = 0; i < teeth; i++) {
-      const angle1 = (i / teeth) * Math.PI * 2;
-      const angle2 = ((i + 0.3) / teeth) * Math.PI * 2;
-      const angle3 = ((i + 0.7) / teeth) * Math.PI * 2;
-      const angle4 = ((i + 1) / teeth) * Math.PI * 2;
-
-      if (i === 0) {
-        shape.moveTo(Math.cos(angle1) * outerRadius, Math.sin(angle1) * outerRadius);
-      }
-
-      shape.lineTo(Math.cos(angle1) * (outerRadius + toothHeight), Math.sin(angle1) * (outerRadius + toothHeight));
-      shape.lineTo(Math.cos(angle2) * (outerRadius + toothHeight), Math.sin(angle2) * (outerRadius + toothHeight));
-      shape.lineTo(Math.cos(angle3) * outerRadius, Math.sin(angle3) * outerRadius);
-      shape.lineTo(Math.cos(angle4) * outerRadius, Math.sin(angle4) * outerRadius);
+      const a1 = (i / teeth) * Math.PI * 2;
+      const a2 = ((i + 0.25) / teeth) * Math.PI * 2;
+      const a3 = ((i + 0.5) / teeth) * Math.PI * 2;
+      if (i === 0) shape.moveTo(Math.cos(a1) * outerRadius, Math.sin(a1) * outerRadius);
+      shape.lineTo(Math.cos(a1) * (outerRadius + toothHeight), Math.sin(a1) * (outerRadius + toothHeight));
+      shape.lineTo(Math.cos(a2) * (outerRadius + toothHeight), Math.sin(a2) * (outerRadius + toothHeight));
+      shape.lineTo(Math.cos(a3) * outerRadius, Math.sin(a3) * outerRadius);
     }
-
-    return new THREE.ExtrudeGeometry(shape, { depth: 0.2, bevelEnabled: false });
+    const hole = new THREE.Path();
+    hole.absarc(0, 0, radius * 0.6, 0, Math.PI * 2, true);
+    shape.holes.push(hole);
+    return new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.02, bevelSegments: 6 });
   };
 
   return (
     <group position={position}>
-      <mesh ref={gear1Ref} position={[0, 0, 0]}>
-        <primitive object={createGear(1.2, 16)} />
-        <meshStandardMaterial color="#DC713E" metalness={0.9} roughness={0.2} />
+      <mesh ref={gear1Ref} position={[0, 0, 0]}> 
+        <primitive object={createAdvancedGear(1.2, 18)} />
+        <meshStandardMaterial color={'#DC713E'} metalness={0.95} roughness={0.12} emissive={'#DC713E'} emissiveIntensity={0.12} />
       </mesh>
-
-      <mesh ref={gear2Ref} position={[2.2, 0, 0]}>
-        <primitive object={createGear(0.8, 12)} />
-        <meshStandardMaterial color="#1A3B44" metalness={0.9} roughness={0.2} />
+      <mesh ref={gear2Ref} position={[2.4, -0.05, 0]}> 
+        <primitive object={createAdvancedGear(0.9, 14)} />
+        <meshStandardMaterial color={'#1A3B44'} metalness={0.9} roughness={0.16} emissive={'#1A3B44'} emissiveIntensity={0.06} />
       </mesh>
-
-      <mesh ref={gear3Ref} position={[1.1, 1.8, 0]}>
-        <primitive object={createGear(1, 14)} />
-        <meshStandardMaterial color="#FFA726" metalness={0.9} roughness={0.2} />
+      <mesh ref={gear3Ref} position={[1.2, 1.8, 0]}> 
+        <primitive object={createAdvancedGear(1.0, 16)} />
+        <meshStandardMaterial color={'#FFA726'} metalness={0.92} roughness={0.11} emissive={'#FFA726'} emissiveIntensity={0.09} />
+      </mesh>
+      <mesh ref={gear4Ref} position={[-1.6, 1.2, 0]}> 
+        <primitive object={createAdvancedGear(0.7, 12)} />
+        <meshStandardMaterial color={'#6B7280'} metalness={0.88} roughness={0.18} />
       </mesh>
     </group>
   );
-}
-function SecurityHub({ position }) {
-  const hubRef = useRef();
-  const particlesRef = useRef();
+};
 
+// Floating tech orbs
+const TechOrb = ({ position, scale = 1, color = '#DC713E' }) => {
+  const orbRef = useRef();
+  const [hovered, setHovered] = useState(false);
+  
   useFrame((state) => {
-    if (hubRef.current) {
-      hubRef.current.rotation.y = state.clock.elapsedTime * 0.2;
-    }
-    if (particlesRef.current) {
-      particlesRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
-      particlesRef.current.rotation.z = Math.cos(state.clock.elapsedTime * 0.2) * 0.1;
+    if (orbRef.current) {
+      orbRef.current.rotation.x += 0.01;
+      orbRef.current.rotation.y += 0.015;
+      orbRef.current.position.y += Math.sin(state.clock.elapsedTime * 0.5) * 0.02;
     }
   });
 
-  const particlePositions = useMemo(() => {
-    const positions = [];
-    for (let i = 0; i < 50; i++) {
-      positions.push([
-        (Math.random() - 0.5) * 8,
-        (Math.random() - 0.5) * 8,
-        (Math.random() - 0.5) * 8
-      ]);
-    }
-    return positions;
-  }, []);
-
   return (
-    <group position={position}>
-      {/* Central hub */}
-      <mesh ref={hubRef}>
-        <icosahedronGeometry args={[1.5, 2]} />
+    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
+      <mesh
+        ref={orbRef}
+        position={position}
+        scale={hovered ? scale * 1.1 : scale}
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
+      >
+        <sphereGeometry args={[1, 32, 32]} />
         <MeshDistortMaterial
-          color="#DC713E"
-          metalness={0.8}
-          roughness={0.2}
-          distort={0.1}
+          color={color}
+          metalness={0.9}
+          roughness={0.1}
+          distort={0.3}
           speed={2}
-          emissive="#DC713E"
+          emissive={color}
           emissiveIntensity={0.2}
         />
       </mesh>
-
-      {/* Security network nodes */}
-      <group ref={particlesRef}>
-        {particlePositions.map((pos, i) => (
-          <mesh key={i} position={pos}>
-            <sphereGeometry args={[0.05]} />
-            <meshStandardMaterial
-              color="#FFA726"
-              emissive="#FFA726"
-              emissiveIntensity={0.5}
-            />
-          </mesh>
-        ))}
-      </group>
-
-      {/* Connection lines visualization */}
-      {Array.from({ length: 6 }).map((_, i) => {
-        const angle = (i / 6) * Math.PI * 2;
-        return (
-          <mesh
-            key={`line-${i}`}
-            position={[Math.cos(angle) * 2, 0, Math.sin(angle) * 2]}
-            rotation={[0, angle, 0]}
-          >
-            <cylinderGeometry args={[0.01, 0.01, 4]} />
-            <meshStandardMaterial
-              color="#6B7280"
-              emissive="#6B7280"
-              emissiveIntensity={0.3}
-              transparent
-              opacity={0.6}
-            />
-          </mesh>
-        );
-      })}
-    </group>
+    </Float>
   );
-}
-function EngineeringModels() {
-  const groupRef = useRef();
+};
 
-  useFrame((state, delta) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.05;
+// Circuit board pattern
+const CircuitPattern = ({ position, rotation = [0, 0, 0] }) => {
+  const circuitRef = useRef();
+  
+  const circuitGeometry = useMemo(() => {
+    const geometry = new THREE.BufferGeometry();
+    const positions = [];
+    const colors = [];
+    
+    // Create circuit-like lines
+    for (let i = 0; i < 200; i++) {
+      const x = (Math.random() - 0.5) * 20;
+      const y = (Math.random() - 0.5) * 20;
+      const z = (Math.random() - 0.5) * 2;
+      
+      positions.push(x, y, z);
+      colors.push(0.86, 0.44, 0.24); // Orange color
+    }
+    
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    
+    return geometry;
+  }, []);
+
+  useFrame((state) => {
+    if (circuitRef.current) {
+      circuitRef.current.rotation.z += 0.002;
     }
   });
 
   return (
-    <group ref={groupRef}>
-      {/* Circuit boards for automation */}
-      <Float speed={1} rotationIntensity={0.2} floatIntensity={0.5}>
-        <CircuitBoard position={[-8, 2, -5]} scale={0.8} />
-      </Float>
-
-      <Float speed={1.2} rotationIntensity={0.3} floatIntensity={0.3}>
-        <CircuitBoard position={[6, -3, 4]} scale={1.2} />
-      </Float>
-
-      {/* Solar panels */}
-      <Float speed={0.8} rotationIntensity={0.1} floatIntensity={0.4}>
-        <SolarPanelArray position={[8, 4, -8]} rotation={[0.2, 0.3, 0]} />
-      </Float>
-
-      {/* Industrial gears */}
-      <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.6}>
-        <IndustrialGears position={[-6, -4, 6]} />
-      </Float>
-
-      {/* Security hub */}
-      <Float speed={0.9} rotationIntensity={0.4} floatIntensity={0.3}>
-        <SecurityHub position={[0, 0, -10]} />
-      </Float>
-
-      {/* Additional atmospheric elements */}
-      {Array.from({ length: 20 }).map((_, i) => (
-        <Float key={i} speed={Math.random() * 2 + 0.5} rotationIntensity={0.1} floatIntensity={0.2}>
-          <mesh position={[
-            (Math.random() - 0.5) * 40,
-            (Math.random() - 0.5) * 20,
-            (Math.random() - 0.5) * 40
-          ]}>
-            <sphereGeometry args={[0.1 + Math.random() * 0.2]} />
-            <meshStandardMaterial
-              color={Math.random() > 0.5 ? "#DC713E" : "#FFA726"}
-              emissive={Math.random() > 0.5 ? "#DC713E" : "#FFA726"}
-              emissiveIntensity={0.2}
-              transparent
-              opacity={0.4}
-            />
-          </mesh>
-        </Float>
-      ))}
-    </group>
+    <points ref={circuitRef} position={position} rotation={rotation}>
+      <primitive object={circuitGeometry} />
+      <pointsMaterial size={0.05} vertexColors transparent opacity={0.6} />
+    </points>
   );
-}
+};
 
-// CameraController component remains unchanged
-function CameraController({ scrollProgress }) {
-  const { camera } = useThree();
-  const timeline = useRef();
+// Holographic panels
+const HoloPanel = ({ position, rotation, color = '#1A3B44' }) => {
+  const panelRef = useRef();
+  const [visible, setVisible] = useState(true);
+  
+  useFrame((state) => {
+    if (panelRef.current) {
+      panelRef.current.material.opacity = 0.3 + Math.sin(state.clock.elapsedTime * 2) * 0.2;
+    }
+  });
 
+  return (
+    <mesh ref={panelRef} position={position} rotation={rotation}>
+      <planeGeometry args={[4, 2.5, 16, 16]} />
+      <meshStandardMaterial
+        color={color}
+        metalness={0.8}
+        roughness={0.2}
+        transparent
+        opacity={0.4}
+        emissive={color}
+        emissiveIntensity={0.1}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  );
+};
+
+// Energy field effect
+const EnergyField = () => {
+  const fieldRef = useRef();
+  
+  useFrame((state) => {
+    if (fieldRef.current) {
+      fieldRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
+      fieldRef.current.rotation.y += 0.005;
+    }
+  });
+
+  return (
+    <mesh ref={fieldRef}>
+      <torusGeometry args={[8, 0.3, 16, 100]} />
+      <meshStandardMaterial
+        color="#FFA726"
+        metalness={0.9}
+        roughness={0.1}
+        emissive="#FFA726"
+        emissiveIntensity={0.3}
+        transparent
+        opacity={0.6}
+      />
+    </mesh>
+  );
+};
+
+// Main Industrial Scene Component
+const Industrial3DScene = () => {
+  const { camera, scene } = useThree();
+  const sceneRef = useRef();
+  
+  // Camera animation
   useLayoutEffect(() => {
-    timeline.current = gsap.timeline({ paused: true });
-
-    const cameraPositions = [
-      { x: 0, y: 2, z: 15, rotY: 0, rotX: -0.1 },
-      { x: -8, y: 4, z: 12, rotY: 0.3, rotX: -0.2 },
-      { x: 8, y: -2, z: 10, rotY: -0.4, rotX: 0.1 },
-      { x: -3, y: 6, z: 8, rotY: 0.2, rotX: -0.3 },
-      { x: 0, y: 0, z: 18, rotY: 0, rotX: 0 },
-    ];
-
-    cameraPositions.forEach((pos, index) => {
-      const progress = index / (cameraPositions.length - 1);
-      timeline.current.to(camera.position, {
-        x: pos.x, y: pos.y, z: pos.z,
-        duration: 2, ease: 'power2.inOut'
-      }, progress);
-      timeline.current.to(camera.rotation, {
-        y: pos.rotY, x: pos.rotX,
-        duration: 2, ease: 'power2.inOut'
-      }, progress);
+    gsap.to(camera.position, {
+      duration: 10,
+      x: Math.sin(Date.now() * 0.001) * 5,
+      z: 15 + Math.cos(Date.now() * 0.001) * 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
     });
   }, [camera]);
 
-  useFrame(() => {
-    if (timeline.current && scrollProgress !== undefined) {
-      timeline.current.seek(scrollProgress * timeline.current.duration());
+  useFrame((state) => {
+    if (sceneRef.current) {
+      sceneRef.current.rotation.y += 0.001;
     }
   });
 
-  return null;
-}
-
-// The main Scene component is updated
-export default function Scene({ scrollProgress }) {
   return (
-    <>
-      {/* Set the scene's fallback background color */}
+    <group ref={sceneRef}>
+      {/* Scene background */}
       <color attach="background" args={['#1A3B44']} />
-
-      {/* Lighting setup is unchanged */}
-      <ambientLight intensity={0.4} color="#1A3B44" />
-      <directionalLight
-        position={[15, 15, 10]}
-        intensity={1.5}
+      
+      {/* Environment lighting */}
+      <Environment preset="warehouse" />
+      
+      {/* Atmospheric effects */}
+      <Stars radius={50} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
+      <Sparkles count={100} scale={[20, 20, 20]} size={3} speed={0.4} color="#FFA726" />
+      
+      {/* Main gear clusters */}
+      <IndustrialGears position={[0, 0, 0]} />
+      <IndustrialGears position={[-8, 3, -5]} performanceMode={true} />
+      <IndustrialGears position={[8, -2, -8]} performanceMode={true} />
+      <IndustrialGears position={[0, 6, -10]} performanceMode={true} />
+      
+      {/* Tech orbs */}
+      <TechOrb position={[-5, 5, -3]} scale={0.8} color="#DC713E" />
+      <TechOrb position={[6, -3, -2]} scale={0.6} color="#FFA726" />
+      <TechOrb position={[-3, -4, -6]} scale={0.7} color="#1A3B44" />
+      <TechOrb position={[4, 8, -4]} scale={0.5} color="#6B7280" />
+      <TechOrb position={[-7, -2, -8]} scale={0.9} color="#DC713E" />
+      
+      {/* Circuit patterns */}
+      <CircuitPattern position={[0, 0, -15]} />
+      <CircuitPattern position={[10, 0, -12]} rotation={[0, 0, Math.PI / 4]} />
+      <CircuitPattern position={[-10, 0, -12]} rotation={[0, 0, -Math.PI / 4]} />
+      
+      {/* Holographic panels */}
+      <HoloPanel position={[-6, 2, -5]} rotation={[0, Math.PI / 6, 0]} color="#1A3B44" />
+      <HoloPanel position={[6, -1, -6]} rotation={[0, -Math.PI / 4, 0]} color="#DC713E" />
+      <HoloPanel position={[0, 4, -8]} rotation={[Math.PI / 6, 0, 0]} color="#FFA726" />
+      <HoloPanel position={[-8, -3, -7]} rotation={[0, Math.PI / 3, Math.PI / 8]} color="#6B7280" />
+      
+      {/* Energy field */}
+      <EnergyField />
+      
+      {/* Dynamic lighting */}
+      <pointLight position={[5, 5, 5]} intensity={0.8} color="#DC713E" />
+      <pointLight position={[-5, -5, 3]} intensity={0.6} color="#FFA726" />
+      <pointLight position={[0, 0, 8]} intensity={0.4} color="#1A3B44" />
+      <spotLight
+        position={[10, 10, 10]}
+        angle={0.3}
+        penumbra={0.5}
+        intensity={1.2}
         color="#FFA726"
         castShadow
-        shadow-mapSize={[2048, 2048]}
       />
-      <pointLight position={[-15, -10, -15]} color="#DC713E" intensity={0.8} />
-      <pointLight position={[10, 5, -10]} color="#6B7280" intensity={0.6} />
-      <spotLight
-        position={[0, 20, 0]}
-        angle={0.3}
-        penumbra={1}
-        intensity={0.5}
-        color="#F3F4F6"
-        castShadow
+      
+      {/* Ambient enhancement */}
+      <ambientLight intensity={0.3} color="#F3F4F6" />
+      
+      {/* Floating clouds for depth */}
+      <Cloud
+        position={[-15, 8, -20]}
+        speed={0.2}
+        opacity={0.1}
+        width={10}
+        depth={8}
+        segments={20}
+        color="#6B7280"
       />
-
-      {/* Alternative engineering-themed background: An industrial warehouse */}
-      {/* <Environment preset="warehouse" background /> */}
-      <Environment preset="night" />
-
-      <EngineeringModels />
-
-      <CameraController scrollProgress={scrollProgress} />
-
-      <fog attach="fog" args={['#0a0a0a', 20, 50]} />
-    </>
+      <Cloud
+        position={[15, -5, -18]}
+        speed={0.3}
+        opacity={0.08}
+        width={8}
+        depth={6}
+        segments={15}
+        color="#1A3B44"
+      />
+    </group>
   );
-}
+};
+
+export default Industrial3DScene;

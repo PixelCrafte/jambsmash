@@ -122,10 +122,10 @@ export default function Footer() {
                   <li key={service.name}>
                     <a
                       href={service.href}
-                      className="group flex items-center space-x-2 text-brand-gray hover:text-brand-orange transition-all duration-300 hover:translate-x-1"
+                      className="group flex items-center space-x-2 text-white hover:text-brand-orange transition-all duration-300 hover:translate-x-1"
                     >
                       <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                      <span className="text-sm">{service.name}</span>
+                      <span className="text-sm text-white/80">{service.name}</span>
                     </a>
                   </li>
                 ))}

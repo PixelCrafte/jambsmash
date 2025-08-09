@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
 
 // Enhanced Navbar with better animations and accessibility
 function EnhancedNavbar() {
@@ -238,8 +240,8 @@ function EnhancedFooter() {
   );
 }
 
-// Enhanced Overlay Component with SEO and accessibility optimizations
-export default function EnhancedOverlay() {
+// Enhanced Overlay Component with proper scroll handling
+export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 }) {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isVisible, setIsVisible] = useState({});
 
@@ -299,7 +301,7 @@ export default function EnhancedOverlay() {
   }, []);
 
   return (
-    <>
+    <div className="w-full min-h-screen">
       {/* SEO Meta Tags (would typically be in Head component) */}
       <div style={{ display: 'none' }}>
         <h1>Jambsmash Electronics - Leading Engineering Solutions in Zimbabwe</h1>
@@ -309,11 +311,13 @@ export default function EnhancedOverlay() {
 
       <EnhancedNavbar />
 
-      <div className="w-full relative z-10 font-sans antialiased">
+      {/* Main content wrapper */}
+      <div className="relative z-10 font-sans antialiased">
         {/* Hero Section - Enhanced with better animations and accessibility */}
         <section 
           id="hero"
-          className="flex flex-col justify-center items-center p-4 sm:p-8 pt-24 sm:pt-32 relative min-h-screen"
+          className="flex flex-col justify-center items-center p-4 sm:p-8 pt-24 sm:pt-32 relative"
+          style={{ minHeight: '100vh' }}
           data-animate
           role="banner"
           aria-labelledby="hero-heading"
@@ -437,7 +441,8 @@ export default function EnhancedOverlay() {
         {/* Enhanced Services Section */}
         <section 
           id="services"
-          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24 bg-transparent relative z-10 min-h-screen"
+          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24 bg-transparent relative z-10"
+          style={{ minHeight: '100vh' }}
           data-animate
           aria-labelledby="services-heading"
         >
@@ -457,7 +462,7 @@ export default function EnhancedOverlay() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
               {[
                 { 
                   icon: '🔒', 
@@ -481,7 +486,7 @@ export default function EnhancedOverlay() {
                   icon: '☀️', 
                   title: 'Solar & Renewable Energy', 
                   desc: 'Complete solar photovoltaic systems, solar water pumping, battery storage solutions, and grid-tie systems for sustainable energy independence.',
-                  features: ['Grid-Tie Systems', 'Battery Storage', 'Solar Pumping', 'Energy Management']
+                  features: ['Grid-Tie Systems', 'Bry Storage', 'Solar Pumping', 'Energy Management']
                 },
                 { 
                   icon: '📡', 
@@ -491,7 +496,7 @@ export default function EnhancedOverlay() {
                 },
                 { 
                   icon: '⚡', 
-                  title: 'Energy Management', 
+              title: 'Energy Management', 
                   desc: 'Smart energy monitoring systems, power quality analysis, load management, and efficiency optimization for reduced operational costs.',
                   features: ['Power Quality Analysis', 'Load Management', 'Energy Audits', 'Cost Optimization']
                 }
@@ -549,7 +554,8 @@ export default function EnhancedOverlay() {
         {/* Enhanced About Section */}
         <section 
           id="about"
-          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24 min-h-screen"
+          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24"
+          style={{ minHeight: '100vh' }}
           data-animate
           aria-labelledby="about-heading"
         >
@@ -582,14 +588,14 @@ export default function EnhancedOverlay() {
                         <p className="text-brand-light leading-relaxed text-lg md:text-xl">
                           To provide <span className="font-bold text-brand-orange">added value solutions</span> through a no-compromise quality engineering approach that sustains long-term reliability and functionality for our clients across Zimbabwe and beyond.
                         </p>
-                      </div>
+                    </div>
                     </div>
 
                     <div className="group">
                       <div className="bg-gradient-to-br from-brand-accent/10 to-brand-orange/10 p-8 rounded-2xl border border-brand-accent/20 hover:border-brand-accent/50 transition-all duration-300 hover:shadow-xl">
                         <h3 className="text-3xl md:text-4xl font-black text-brand-accent mb-6 flex items-center">
                           <span className="text-4xl mr-4">🚀</span>
-                          Our Vision
+                          Our Vion
                         </h3>
                         <p className="text-brand-light leading-relaxed text-lg md:text-xl">
                           To be the <span className="font-bold text-brand-orange">global leader</span> in telecommunications, automation, instrumentation and electrical systems engineering through unparalleled, quality and timely service delivery.
@@ -622,7 +628,7 @@ export default function EnhancedOverlay() {
                             <span className="text-2xl mr-2">🎓</span>
                             B.Tech Electronic Engineering (Honours)
                           </p>
-                        <p className="text-brand-accent text-lg flex items-center justify-center">
+                          <p className="text-brand-accent text-lg flex items-center justify-center">
                             <span className="text-xl mr-2">⚡</span>
                             HND Electrical Power Engineering
                           </p>
@@ -631,7 +637,7 @@ export default function EnhancedOverlay() {
                         <blockquote className="text-brand-light/90 text-xl md:text-2xl italic relative">
                           <span className="text-6xl text-brand-orange/30 absolute -top-4 -left-4">"</span>
                           <span className="relative z-10">
-                            Leading innovation in engineering solutions with passion, expertise, and an unwavering commitment to excellence.
+                            Leading innovation in engineeri solutions with passion, expertise, and an unwavering commitment to excellence.
                           </span>
                           <span className="text-6xl text-brand-orange/30 absolute -bottom-8 -right-4">"</span>
                         </blockquote>
@@ -640,30 +646,6 @@ export default function EnhancedOverlay() {
                   </div>
 
                   {/* Company Stats */}
-                  {/* Company Stats */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-                      {[
-                        { number: '2008', label: 'Established', icon: '🏢' },
-                        { number: '15+', label: 'Years Excellence', icon: '⭐' },
-                        { number: '500+', label: 'Projects Done', icon: '✅' },
-                        { number: '24/7', label: 'Support', icon: '🛠️' }
-                      ].map((stat, index) => (
-                        <div
-                          key={index}
-                          className="text-center group hover:scale-105 transition-transform duration-300"
-                        >
-                          <div className="text-4xl mb-2">{stat.icon}</div>
-                          <div className="text-3xl md:text-4xl font-black text-brand-orange mb-2 group-hover:text-brand-accent transition-colors duration-300">
-                            {stat.number}
-                          </div>
-                          <div className="text-brand-light/80 font-medium text-sm md:text-base">
-                            {stat.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                  {/*
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
                     {[
                       { number: '2008', label: 'Established', icon: '🏢' },
@@ -671,7 +653,10 @@ export default function EnhancedOverlay() {
                       { number: '500+', label: 'Projects Done', icon: '✅' },
                       { number: '24/7', label: 'Support', icon: '🛠️' }
                     ].map((stat, index) => (
-                      <div key={indName="text-center group hover:scale-105 transition-transform duration-300">
+                      <div
+                        key={index}
+                        className="text-center group hover:scale-105 transition-transform duration-300"
+                      >
                         <div className="text-4xl mb-2">{stat.icon}</div>
                         <div className="text-3xl md:text-4xl font-black text-brand-orange mb-2 group-hover:text-brand-accent transition-colors duration-300">
                           {stat.number}
@@ -682,7 +667,6 @@ export default function EnhancedOverlay() {
                       </div>
                     ))}
                   </div>
-                  */}
 
                   <div className="text-center">
                     <a 
@@ -694,17 +678,18 @@ export default function EnhancedOverlay() {
                       Discover Our Full Story
                       <span className="ml-3 text-2xl group-hover:translate-x-2 transition-transform duration-300">→</span>
                     </a>
-              </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> 
         </section>
 
         {/* Enhanced Customer Reviews Section */}
         <section 
           id="testimonials"
-          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24 bg-transparent relative z-10 min-h-screen"
+          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24 bg-transparent relative z-10"
+          style={{ minHeight: '100vh' }}
           data-animate
           aria-labelledby="testimonials-heading"
         >
@@ -735,7 +720,7 @@ export default function EnhancedOverlay() {
                     {'★'.repeat(testimonials[currentTestimonial].stars)}
                   </div>
                   
-                  {/* Quote */}
+                {/* Quote */}
                   <blockquote className="text-2xl md:text-3xl text-brand-light text-center leading-relaxed mb-10 italic relative">
                     <span className="text-8xl text-brand-orange/20 absolute -top-8 left-0">"</span>
                     <span className="relative z-10 px-8">
@@ -764,7 +749,7 @@ export default function EnhancedOverlay() {
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentTestimonial(inx)}
+                    onClick={() => setCurrentTestimonial(index)}
                     className={`w-4 h-4 rounded-full transition-all duration-300 ${
                       index === currentTestimonial 
                         ? 'bg-brand-orange shadow-lg shadow-brand-orange/50' 
@@ -788,15 +773,14 @@ export default function EnhancedOverlay() {
                   icon: '🔧',
                   title: 'Expert Technical Team',
                   desc: 'Certified engineers with decades of combined experience in industrial systems.'
-            },
-                {
-                  icon: '🛡️',
+                },
+                {               icon: '🛡️',
                   title: 'Quality Guaranteed',
                   desc: 'Comprehensive warranties and ongoing support for all our installations.'
                 }
               ].map((item, index) => (
                 <div key={index} className="group bg-brand-dark/60 backdrop-blur-xl p-8 rounded-2xl border border-brand-gray/20 hover:border-brand-orange/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                  <div clame="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-5xl mb-4 group-r:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
                   <h3 className="text-xl font-bold text-brand-light mb-3 group-hover:text-brand-orange transition-colors duration-300">
@@ -814,7 +798,8 @@ export default function EnhancedOverlay() {
         {/* Enhanced Contact Section */}
         <section 
           id="contact"
-          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24 relative min-h-screen"
+          className="flex flex-col justify-center items-center p-4 sm:p-8 py-24 relative"
+          style={{ minHeight: '100vh' }}
           data-animate
           aria-labelledby="contact-heading"
         >
@@ -966,6 +951,6 @@ export default function EnhancedOverlay() {
       </div>
 
       <EnhancedFooter />
-    </>
+    </div>
   );
 }

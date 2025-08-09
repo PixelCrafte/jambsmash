@@ -1,45 +1,58 @@
-// 3. Replace the contents of: app/page.js
-
 'use client';
 
-import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { ScrollControls } from '@react-three/drei';
+import { Suspense, useState } from 'react';
+
 import Scene from '@/components/Scene_Alternative2';
 import Overlay from '@/components/Overlay';
-import Loader from '@/components/Loader';
-import Navbar from '@/components/Navbar';
-import Footer from '@components/Footer';
+// MODIFICATION: We will create this new component in the next step
+import { SceneLoader } from '@/components/SceneLoader';
 
 export default function Home() {
-  const scrollRef = useRef();
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const handleSectionChange = (sectionIndex) => {
-    if (scrollRef.current) {
-      const scrollContainer = scrollRef.current.el;
-      const pageHeight = scrollContainer.clientHeight;
-      scrollContainer.scrollTo({
-        top: pageHeight * sectionIndex,
-        behavior: 'smooth',
-      });
+  const handleScroll = (event) => {
+    const { scrollTop, scrollHeight, clientHeight } = event.currentTarget;
+
+    if (scrollHeight - clientHeight === 0) {
+      setScrollProgress(0);
+      return;
     }
+
+    const progress = scrollTop / (scrollHeight - clientHeight);
+    setScrollProgress(progress);
   };
 
   return (
-    <>
-      <div style={{ height: '100dvh', width: '100vw', position: 'relative' }}>
-        <Canvas
-          camera={{ position: [0, 0, 10], fov: 35 }}
-          gl={{ antialias: true }}
-        >
-          <Suspense fallback={<Loader />}>
-            <ScrollControls pages={10} damping={0.2} ref={scrollRef}>
-              <Scene />
-              <Overlay />
-            </ScrollControls>
-          </Suspense>
-        </Canvas>
+    <div className="relative w-screen h-screen bg-[#0a0a0a]">
+      <Canvas
+        camera={{ position: [0, 0, 10], fov: 35 }}
+        gl={{ antialias: true }}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+        }}
+      >
+        <Suspense fallback={null}>
+          <Scene scrollProgress={scrollProgress} />
+        </Suspense>
+        
+        {/* MODIFICATION: The loader logic is now handled inside the Canvas */}
+        <SceneLoader />
+      </Canvas>
+      
+      {/* MODIFICATION: The original Loader component is removed from here */}
+      
+      <div
+        className="absolute top-0 left-0 w-full h-full overflow-x-hidden overflow-y-auto z-10"
+        onScroll={handleScroll}
+      >
+        <Overlay />
       </div>
-    </>
+    </div>
   );
 }
