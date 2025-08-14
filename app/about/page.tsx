@@ -2,7 +2,7 @@
 
 import { Suspense, useState, useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import AboutScene from '@/components/AboutScene';
+import AboutScene from '@/components/AboutScene2';
 import Overlay from '@/components/AboutOverlay';
 import Head from 'next/head';
 
@@ -79,6 +79,7 @@ export default function AboutPage() {
       <main className="w-screen h-screen relative overflow-hidden">
         {/* 3D Canvas Background */}
         <div className="absolute top-0 left-0 w-full h-full z-0">
+          
           <Canvas
             camera={{ position: [0, 0, 15], fov: 50 }}
             gl={{ 
@@ -88,6 +89,11 @@ export default function AboutPage() {
             }}
             dpr={[1, 2]}
           >
+          {/*
+          <Canvas
+            camera={{ position: [15, 5, 15], fov: 60 }}
+            gl={{ antialias: true, alpha: true }}
+          >*/}
             <Suspense fallback={null}>
               <AboutScene scrollPosition={scrollPosition} />
             </Suspense>

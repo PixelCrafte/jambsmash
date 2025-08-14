@@ -107,8 +107,9 @@ export default function Footer() {
                   <div className="flex items-start space-x-4 text-brand-light hover:text-brand-orange transition-colors duration-300 group">
                     <Phone className="text-brand-orange w-5 h-5 mt-0.5 flex-shrink-0" />
                     <div className="text-gray-200 group-hover:text-brand-orange transition-colors duration-300">
-                      <div>+263 773755716</div>
-                      <div>+263 773755717</div>
+                      <div><a href="tel:+263773755716">+263 773755716</a></div>
+                      <div><a href="tel:+263773755717">+263 773755717</a></div>
+                      <div><a href="tel:+263776641687">+263 776641687</a></div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4 text-brand-light hover:text-brand-orange transition-colors duration-300 group">
@@ -231,9 +232,9 @@ export default function Footer() {
             {/* Made by Pixelcrafte */}
             <div className="text-center lg:text-right">
               <p className="text-gray-400 text-sm">
-                Made with ❤️ by{' '}
+                Made with Passion by{' '}
                 <a 
-                  href="https://pixelcrafte.com" 
+                  href="https://pixelcrafte.co.zw" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-brand-orange hover:text-brand-accent transition-colors duration-300 font-semibold hover:underline"
@@ -245,13 +246,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Back to Top Button */}
+        {/* Back to Top Button 
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="fixed bottom-8 left-8 w-14 h-14 bg-gradient-to-br from-brand-orange to-brand-accent backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl shadow-brand-orange/30 hover:shadow-brand-orange/50 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 hover:rotate-[360deg] active:scale-110 active:-translate-y-2 active:rotate-[360deg] z-50 group"
         >
           <ArrowUp className="text-brand-dark w-6 h-6 group-hover:-translate-y-1 group-active:-translate-y-1 transition-transform duration-300" />
-        </button>
+        </button>*/}
       </div>
 
       {/* Bottom glow effect */}

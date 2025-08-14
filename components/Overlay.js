@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import Link from 'next/link';
+import { MapPin } from "lucide-react";
 
 // Enhanced Overlay Component with world-class design
 export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 }) {
@@ -80,9 +82,9 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
           role="banner"
           aria-labelledby="hero-heading"
         >
-          <div className={`text-center z-20 relative max-w-6xl mx-auto transition-all duration-700 ${isVisible.hero ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className={`text-center z-20 relative max-w-6xl mx-auto transition-all duration-300 ${isVisible.hero ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
             
-            {/* Enhanced Logo Typography */}
+            {/* Enhanced Logo Typography 
             <h1 
               id="hero-heading"
               className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tighter leading-none mb-8"
@@ -96,23 +98,26 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
               <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-accent mt-6 tracking-widest uppercase">
                 Electronics
               </div>
-            </h1>
+            </h1>*/}
 
+
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none mb-4 text-shadow-lg">                                                                                                                        <span className="inline-block animate-pulse text-brand-orange drop-shadow-2xl">JAMB</span>                              <span className="inline-block animate-bounce delay-300 text-brand-light">SMASH</span>                                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-accent mt-2 tracking-widest uppercase">Electronics</div>                                                                                                    </h1>
             {/* Glassmorphic Tagline */}
             <div className="mt-10 md:mt-12">
               <p className="text-xl sm:text-2xl md:text-3xl text-brand-light font-light max-w-5xl mx-auto leading-relaxed">
                 <span className="bg-brand-dark/60 backdrop-blur-xl rounded-2xl p-8 inline-block shadow-2xl border border-brand-orange/30">
-                  Pioneering the future through 
-                  <span className="font-semibold text-brand-accent"> cutting-edge automation</span>,
-                  <span className="font-semibold text-brand-accent"> precision instrumentation</span>, and
-                  <span className="font-semibold text-brand-accent"> advanced security solutions</span>.
+                  Pioneering the future through cutting-edge
+                  <span className="font-semibold text-brand-accent"> Industrial Automation</span>,
+                  <span className="font-semibold text-brand-accent"> Electrical and Electronic Equipment systems</span>,
+                  <span className="font-semibold text-brand-accent"> Instrumentation</span>, and
+                  <span className="font-semibold text-brand-accent"> advanced Security solutions</span>
                 </span>
               </p>
             </div>
 
             {/* Premium CTA Buttons */}
             <div className="mt-16 md:mt-20 flex flex-col sm:flex-row gap-6 md:gap-8 justify-center items-center">
-              <a 
+              <Link 
                 href="/services" 
                 className="group relative bg-gradient-to-br from-brand-orange to-brand-accent text-brand-dark font-bold py-5 md:py-6 px-12 md:px-14 rounded-full shadow-2xl hover:shadow-3xl active:shadow-3xl hover:shadow-brand-orange/60 active:shadow-brand-orange/60 transition-all duration-500 transform hover:scale-110 active:scale-110 hover:-translate-y-2 active:-translate-y-2 text-lg md:text-xl"
                 aria-label="Explore our engineering services"
@@ -122,7 +127,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                   Explore Our Services
                   <span className="ml-3 inline-block group-hover:translate-x-2 group-active:translate-x-2 transition-transform duration-300 text-2xl">→</span>
                 </span>
-              </a>
+              </Link>
 
               <a 
                 href="tel:+263773755716" 
@@ -158,27 +163,21 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
           aria-labelledby="services-heading"
         >
           <div className="max-w-8xl w-full">
-            <div className={`text-center mb-20 transition-all duration-700 ${isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+            <div className={`text-center mb-20 transition-all duration-300 ${isVisible.services ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
               <h2 
                 id="services-heading"
-                className="text-5xl md:text-6xl lg:text-7xl font-black text-brand-orange tracking-tighter mb-6 relative"
+                className="text-5xl bg-brand-dark/50 md:text-6xl lg:text-7xl font-black text-brand-orange tracking-tighter mb-6 relative"
               >
-                Our Engineering Excellence
+                Our Engineering Services
                 <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-brand-orange to-brand-accent rounded-full"></div>
               </h2>
-              <p className="text-xl sm:text-2xl md:text-3xl text-brand-light max-w-4xl mx-auto leading-relaxed font-light">
+              <p className="text-xl bg-brand-dark/20 sm:text-2xl md:text-3xl text-brand-light max-w-4xl mx-auto leading-relaxed font-light">
                 Comprehensive solutions engineered to power Zimbabwe&#39;s industrial future
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
               {[
-                { 
-                  icon: '🔒', 
-                  title: 'Electronic Security Systems', 
-                  desc: 'State-of-the-art CCTV surveillance, biometric access control, intelligent fire monitoring, and hazardous gas detection systems with 24/7 monitoring capabilities.',
-                  features: ['HD IP Camera Systems', 'Biometric Access Control', 'Fire & Gas Detection', '24/7 Monitoring']
-                },
                 { 
                   icon: '⚙️', 
                   title: 'Industrial Automation', 
@@ -187,6 +186,13 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                   isMain: true
                 },
                 { 
+                  icon: '🔒', 
+                  title: 'Electronic Security Systems', 
+                  desc: 'State-of-the-art CCTV surveillance, biometric access control, intelligent fire monitoring, and hazardous gas detection systems with 23/7 monitoring capabilities.',
+                  features: ['HD IP Camera Systems', 'Biometric Access Control', 'Fire & Gas Detection', '23/7 Monitoring']
+                },
+
+                { 
                   icon: '🔬', 
                   title: 'Instrumentation & Calibration', 
                   desc: 'Precision pH meters, conductivity analyzers, turbidity meters, flow measurement, and NIST-traceable calibration services for accurate process control.',
@@ -194,7 +200,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                 },
                 { 
                   icon: '☀️', 
-                  title: 'Solar & Renewable Energy', 
+                  title: 'Solar Solutions', 
                   desc: 'Complete solar photovoltaic systems, solar water pumping, battery storage solutions, and grid-tie systems for sustainable energy independence.',
                   features: ['Grid-Tie Systems', 'Battery Storage', 'Solar Pumping', 'Energy Management']
                 },
@@ -218,7 +224,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                 >
                   {/* Main Service Tag */}
                   {service.isMain && (
-                    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-brand-orange to-brand-accent text-brand-dark font-bold px-4 py-2 rounded-full text-sm shadow-lg transform rotate-12 z-20">
+                    <div className="absolute -top-3 -right-3 bg-gradient-to-r from-brand-orange to-brand-accent text-brand-dark font-bold px-4 py-2 rounded-full text-sm shadow-lg transform z-20">
                       Main Service
                     </div>
                   )}
@@ -247,14 +253,14 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                       ))}
                     </ul>
                     
-                    <div className="flex items-center justify-between">
+                    <Link href="/services" className="flex items-center justify-between">
                       <span className="text-brand-accent font-bold group-hover:text-brand-orange group-active:text-brand-orange transition-colors duration-300 text-lg">
                         Learn More
                       </span>
                       <span className="text-2xl group-hover:translate-x-2 group-hover:text-brand-orange group-active:translate-x-2 group-active:text-brand-orange transition-all duration-300">
                         →
                       </span>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -319,7 +325,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                         Our Vision
                       </h3>
                       <p className="text-brand-light leading-relaxed text-lg md:text-xl">
-                        To be the <span className="font-bold text-brand-orange">global leader</span> in telecommunications, automation, instrumentation and electrical systems engineering through unparalleled quality and timely service delivery.
+                        To be the <span className="font-bold text-brand-orange">global leader</span> in Industrial Automation, Electrical and Electronic systems engineering through unparalleled quality and timely service delivery.
                       </p>
                     </div>
                   </div>
@@ -347,6 +353,11 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                     </h4>
                     
                     <div className="space-y-2 mb-8">
+                     <p className="text-brand-accent font-bold text-xl flex items-center justify-center">
+                        <span className="text-2xl mr-2">🎓</span>
+                        M.Tech Industrial Automation
+                      </p>
+
                       <p className="text-brand-accent font-bold text-xl flex items-center justify-center">
                         <span className="text-2xl mr-2">🎓</span>
                         B.Tech Electronic Engineering (Honours)
@@ -366,6 +377,10 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                     </blockquote>
                   </div>
                 </div>
+              </div>
+              <div className="text-center mt-10">                                                                                                    <Link href="/about" className="group text-brand-dark border-2 bg-brand-accent/80 border-brand-orange font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-lg hover:shadow-brand-orange/20 active:shadow-brand-orange/20 hover:bg-brand-orange hover:text-brand-dark active:bg-brand-orange active:text-brand-dark transition-all duration-300 transform hover:scale-105 active:scale-105 text-base md:text-lg">
+                  Learn More About Us
+                </Link>
               </div>
             </div>
           </div> 
@@ -425,8 +440,10 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                     <p className="text-brand-light text-lg md:text-xl mb-2">
                       {testimonials[currentTestimonial].project}
                     </p>
-                    <p className="text-brand-gray text-base md:text-lg">
-                      📍 {testimonials[currentTestimonial].location}
+                    <p className="text-brand-accent text-base md:text-lg">
+      {/*<MapPin className="text-brand-orange w-5 h-5 mt-0.5 mr-5 flex-shrink-0" />*/}
+
+                       <MapPin className="text-brand-orange w-5 h-5" />  {testimonials[currentTestimonial].location}
                     </p>
                   </div>
                 </div>
@@ -516,7 +533,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
 
             {/* Premium CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
-              <a 
+              <Link 
                 href="/contact" 
                 className="group relative bg-gradient-to-br from-brand-orange to-brand-accent text-brand-dark font-black py-6 md:py-7 px-14 md:px-16 rounded-full shadow-3xl hover:shadow-4xl active:shadow-4xl hover:shadow-brand-orange/60 active:shadow-brand-orange/60 transition-all duration-500 transform hover:scale-110 active:scale-110 hover:-translate-y-3 active:-translate-y-3 text-xl md:text-2xl overflow-hidden"
                 aria-label="Get your free engineering consultation"
@@ -527,7 +544,7 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                   Free Consultation
                   <span className="ml-4 text-3xl group-hover:translate-x-2 group-active:translate-x-2 transition-transform duration-300">→</span>
                 </span>
-              </a>
+              </Link>
 
               <a 
                 href="tel:+263773755716" 

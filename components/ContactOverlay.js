@@ -448,11 +448,11 @@ export default function Overlay() {
         <Navbar />
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <div className="inline-block px-6 py-2 bg-gradient-to-r from-brand-orange/20 to-brand-accent/20 border border-brand-orange/30 rounded-full text-brand-orange font-semibold text-sm tracking-wide uppercase mb-6 animate-fade-in">
+          <div className="inline-block px-6 py-2 bg-brand-dark/50 border border-brand-orange/30 rounded-full text-brand-accent font-semibold text-sm tracking-wide uppercase mb-6 animate-fade-in">
             Ready to Connect
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
+          <h1 className="text-5xl bg-brand-dark/20 md:text-7xl font-black mb-6">
             <span className="bg-gradient-to-r from-white to-brand-light bg-clip-text text-transparent">
               Let&#39;s Build
             </span>
@@ -474,8 +474,8 @@ export default function Overlay() {
             <ContactInfoCard
               icon={phoneIcon}
               title="Phone Support"
-              info={['+263 773 755 716', '+263 773 755 717']}
-              links={['tel:+263773755716', 'tel:+263773755717']}
+              info={['+263 773 755 716', '+263 773 755 717', '+263 776 641 687']}
+              links={['tel:+263773755716', 'tel:+263773755717', 'tel:+263776641687']}
               delay={0}
             />
             

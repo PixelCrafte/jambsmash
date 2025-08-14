@@ -417,7 +417,7 @@ export default function AboutOverlay() {
           <div className="max-w-4xl mx-auto mb-12 bg-brand-dark/10 backdrop-blur-2xl p-8 rounded-2xl border border-brand-orange/20">
             <p className="text-xl md:text-2xl text-brand-light/90 leading-relaxed font-light">
               <TypeWriter 
-                text="Founded in 2020, Jambstronics Automation emerged as Zimbabwe's beacon of engineering innovation, transforming industries through cutting-edge solutions in Industrial Automation, Electrical systems, Instrumentation, and Telecommunications"
+                text="Founded in 2020, Jambstronics Technologies emerged as Zimbabwe's beacon of engineering innovation, transforming industries through cutting-edge solutions in telecommunications, automation, and electrical systems."
                 delay={50}
               />
             </p>
@@ -464,7 +464,7 @@ export default function AboutOverlay() {
                 <h3 className="text-3xl lg:text-4xl font-bold text-white">Our Vision</h3>
               </div>
               <p className="text-xl lg:text-2xl text-brand-light/90 leading-relaxed">
-                To be the global leader in Industrial Automation, Electrical and Electronic systems engineering through the provision of unparalleled, quality and timely service that shapes the future of technology.
+                To be the global leader in Telecommunication, automation, instrumentation and Electrical systems engineering through the provision of unparalleled, quality and timely service that shapes the future of technology.
               </p>
             </div>
           </div>
@@ -691,7 +691,6 @@ export default function AboutOverlay() {
           <DirectorCard 
             name="Pride Mashiyani"
             qualifications={[
-              "M.Tech Industrial Automation",
               "B.Tech Electronic Engineering",
               "HND Electrical Power Engineering",
               "Innovation Strategist",
@@ -700,7 +699,7 @@ export default function AboutOverlay() {
             image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face"
             delay={0}
           />
-          {/*<DirectorCard 
+          <DirectorCard 
             name="Wilbert Magaramagara"
             qualifications={[
               "M.Sc Project Management",
@@ -710,7 +709,7 @@ export default function AboutOverlay() {
             ]}
             image="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face"
             delay={100}
-          />*/}
+          />
         </div>
         
         {/* Leadership Philosophy */}
@@ -857,7 +856,7 @@ export default function AboutOverlay() {
                 <div className="space-y-1">
                   <div>+263 773 755 716</div>
                   <div>+263 773 755 717</div>
-                  <div>+263 776 641 687</div>
+                  <div>+263 719 180 300</div>
                 </div>
               </div>
               <div>

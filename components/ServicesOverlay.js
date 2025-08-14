@@ -3,11 +3,9 @@ import { ArrowRight, Shield, Cpu, Settings, Sun, Network, Monitor, Zap, CheckCir
 import  Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-//Mock components for Navbar and Footer
-//const Navbar = () => <nav className="fixed top-0 w-full z-50 bg-brand-dark/20 backdrop-blur-xl border-b border-brand-orange/20 h-16"></nav>;
-//const Footer = () => <footer className="w-full bg-brand-dark/20 backdrop-blur-xl border-t border-brand-orange/20 h-20"></footer>;
+import Link from "next//link";
 
-const ServiceCard = ({ title, description, icon: Icon, features, imageUrl, delay = 0, isActive, onToggle }) => {
+const ServiceCards = ({ title, description, icon: Icon, features, imageUrl, delay = 0, isActive, onToggle }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -102,15 +100,273 @@ const ServiceCard = ({ title, description, icon: Icon, features, imageUrl, delay
         <div className={`mt-8 transition-all duration-700 transform ${
           isActive || isHovered ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
         }`}>
-          <button className="group/btn w-full bg-gradient-to-r from-brand-orange to-brand-accent text-brand-dark font-bold py-4 px-6 rounded-xl transition-all duration-500 hover:shadow-xl hover:shadow-brand-orange/30 transform hover:scale-[1.02]">
-            <span className="flex items-center justify-center space-x-2">
-              <span>Learn More</span>
-              <ArrowRight className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform duration-300" />
-            </span>
-          </button>
+          <Link href="/contact">
+              <button className="group/btn w-full bg-gradient-to-r from-brand-orange to-brand-accent text-brand-dark font-bold py-4 px-6 rounded-xl transition-all duration-500 hover:shadow-xl hover:shadow-brand-orange/30 transform hover:scale-[1.02]">
+                <span className="flex items-center justify-center space-x-2">
+                  <span>Contact Us</span>
+                  <ArrowRight className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform duration-300" />
+                </span>
+              </button>
+          </Link>
         </div>
       </div>
     </div>
+  );
+};
+
+const ServiceCard = ({ title, description, icon: Icon, features, imageUrl, delay = 0, isActive, onToggle, isMain = false }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <>
+      {/* Integrated CSS Styles */}
+      <style jsx>{`
+        @keyframes sparkle-1 {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          50% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes sparkle-2 {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          60% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes sparkle-3 {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          40% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes sparkle-4 {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          70% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse-subtle {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 0.8; }
+        }
+
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-2px); }
+        }
+
+        .animate-sparkle-1 {
+          animation: sparkle-1 3s ease-in-out infinite;
+        }
+
+        .animate-sparkle-2 {
+          animation: sparkle-2 3s ease-in-out infinite;
+        }
+
+        .animate-sparkle-3 {
+          animation: sparkle-3 3s ease-in-out infinite;
+        }
+
+        .animate-sparkle-4 {
+          animation: sparkle-4 3s ease-in-out infinite;
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+
+        .animate-pulse-subtle {
+          animation: pulse-subtle 2s ease-in-out infinite;
+        }
+
+        .animate-bounce-subtle {
+          animation: bounce-subtle 2s ease-in-out infinite;
+        }
+
+        .bg-size-200 {
+          background-size: 200% 100%;
+        }
+
+        .bg-pos-0 {
+          background-position: 0% 0%;
+        }
+
+        .bg-pos-100 {
+          background-position: 100% 0%;
+        }
+
+        .hover-bg-pos-100:hover {
+          background-position: 100% 0%;
+        }
+      `}</style>
+
+      <div
+        className={`group relative bg-brand-dark/10 backdrop-blur-2xl rounded-3xl overflow-hidden border transition-all duration-700 cursor-pointer transform ${
+          isActive || isHovered
+            ? 'border-brand-orange/80 scale-[1.02] shadow-2xl shadow-brand-orange/20'
+            : 'border-brand-orange/20 hover:border-brand-orange/60'
+        } ${isMain ? 'ring-2 ring-brand-accent/30 ring-offset-4 ring-offset-brand-dark/20' : ''}`}
+        style={{
+          animationDelay: `${delay}ms`,
+          background: isMain
+            ? 'linear-gradient(135deg, rgba(220, 113, 62, 0.08) 0%, rgba(26, 59, 68, 0.1) 50%, rgba(10, 25, 47, 0.15) 100%)'
+            : 'linear-gradient(135deg, rgba(26, 59, 68, 0.1) 0%, rgba(10, 25, 47, 0.15) 100%)'
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={onToggle}
+      >
+        {/* Premium Rotating Border for Main Service */}
+        {isMain && (
+          <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+            <div className="absolute inset-[-2px] rounded-3xl animate-spin-slow">
+              <div className="h-full w-full rounded-3xl bg-gradient-to-r from-brand-orange via-brand-accent to-brand-orange opacity-75"></div>
+            </div>
+            <div className="absolute inset-[2px] rounded-3xl bg-brand-dark/95"></div>
+          </div>
+        )}
+
+        {/* Animated background gradient */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-brand-orange/5 via-transparent to-brand-accent/5 opacity-0 transition-opacity duration-700 ${
+          isActive || isHovered ? 'opacity-100' : ''
+        }`}></div>
+
+        {/* Glow effect - enhanced for main */}
+        <div className={`absolute -inset-1 bg-gradient-to-r from-brand-orange/20 to-brand-accent/20 rounded-3xl blur opacity-0 transition-opacity duration-700 ${
+          isActive || isHovered ? 'opacity-100' : ''
+        } ${isMain ? 'animate-pulse-subtle' : ''}`}></div>
+
+        {/* Sparkle Effects for Main Service */}
+        {isMain && (
+          <>
+            <div className="absolute top-10 left-10 w-2 h-2 bg-brand-accent rounded-full animate-sparkle-1"></div>
+            <div className="absolute top-20 right-20 w-1.5 h-1.5 bg-brand-orange rounded-full animate-sparkle-2"></div>
+            <div className="absolute bottom-32 left-16 w-1 h-1 bg-brand-accent rounded-full animate-sparkle-3"></div>
+            <div className="absolute bottom-40 right-12 w-2 h-2 bg-brand-orange rounded-full animate-sparkle-4"></div>
+          </>
+        )}
+
+        {/* Premium Badge for Main Service */}
+        {isMain && (
+          <div className="absolute top-6 left-6 z-20">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-brand-accent blur-lg opacity-70 animate-pulse-subtle"></div>
+              <div className="relative bg-gradient-to-r from-brand-orange to-brand-accent px-4 py-2 rounded-full flex items-center space-x-2 shadow-2xl border border-brand-light/20">
+                <svg className="w-4 h-4 text-brand-dark animate-bounce-subtle" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span className="text-brand-dark font-bold text-xs uppercase tracking-wider">Featured</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Hero Image */}
+        <div className="relative overflow-hidden rounded-t-3xl">
+          <Image
+            src={imageUrl}
+            alt={title}
+            width={600}
+            height={224}
+            className={`w-full h-56 lg:h-64 object-cover transition-all duration-700 ${
+              isActive || isHovered ? 'scale-110' : 'scale-100'
+            }`}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = `https://placehold.co/600x400/1A3B44/DC713E?text=${encodeURIComponent(title)}`;
+            }}
+          />
+          <div className={`absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent transition-opacity duration-700 ${
+            isActive || isHovered ? 'opacity-90' : 'opacity-60'
+          }`}></div>
+
+          {/* Floating Icon - Special treatment for main */}
+          <div className={`absolute top-6 right-6 p-3 rounded-xl backdrop-blur-sm border transition-all duration-500 ${
+            isMain
+              ? 'bg-gradient-to-br from-brand-orange/30 to-brand-accent/30 border-brand-light/40 shadow-lg shadow-brand-orange/30'
+              : 'bg-brand-dark/60 border-brand-orange/40'
+          } ${
+            isActive || isHovered ? 'bg-brand-orange/20 border-brand-orange/80 scale-110' : ''
+          }`}>
+            <Icon className={`w-6 h-6 transition-colors duration-500 ${
+              isActive || isHovered ? 'text-brand-orange' : isMain ? 'text-brand-accent' : 'text-brand-light'
+            }`} />
+          </div>
+
+          {/* Title Overlay */}
+          <div className="absolute bottom-6 left-6 right-6">
+            <h3 className={`text-2xl lg:text-3xl font-bold transition-all duration-500 ${
+              isActive || isHovered ? 'text-brand-orange' : 'text-white'
+            }`} style={isMain ? { filter: 'drop-shadow(0 0 20px rgba(220, 113, 62, 0.5))' } : {}}>
+              {title}
+            </h3>
+            <div className={`h-1 bg-gradient-to-r from-brand-orange to-brand-accent rounded-full mt-3 transition-all duration-700 ${
+              isActive || isHovered ? 'w-24' : 'w-12'
+            } ${isMain ? 'shadow-lg shadow-brand-orange/50' : ''}`}></div>
+          </div>
+        </div>
+
+        <div className="relative p-8 lg:p-10">
+          {/* Description */}
+          <p className={`text-lg leading-relaxed mb-6 transition-colors duration-500 ${
+            isActive || isHovered ? 'text-brand-light' : 'text-brand-light/80'
+          }`}>
+            {description}
+          </p>
+
+          {/* Features */}
+          <div className={`space-y-3 transition-all duration-700 transform ${
+            isActive || isHovered ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-80'
+          }`}>
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-start space-x-3">
+                <CheckCircle2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                  isMain ? 'text-brand-orange' : 'text-brand-accent'
+                }`} />
+                <span className="text-brand-light/90 leading-relaxed text-sm">{feature}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Action button - Enhanced for main */}
+          <div className={`mt-8 transition-all duration-700 transform ${
+            isActive || isHovered ? 'translate-y-0 opacity-100' : isMain ? 'opacity-100' : 'translate-y-6 opacity-0'
+          }`}>
+            <Link href="/contact">
+                <button
+                  className={`group/btn w-full font-bold py-4 px-6 rounded-xl transition-all duration-500 transform hover:scale-[1.02] ${
+                    isMain
+                      ? 'text-brand-dark shadow-xl shadow-brand-orange/30 hover:shadow-2xl hover:shadow-brand-accent/40'
+                      : 'bg-gradient-to-r from-brand-orange to-brand-accent text-brand-dark hover:shadow-xl hover:shadow-brand-orange/30'
+                  }`}
+                  style={isMain ? {
+                    background: 'linear-gradient(90deg, #DC713E 0%, #7FA7A5 50%, #DC713E 100%)',
+                    backgroundSize: '200% 100%',
+                    backgroundPosition: '0% 0%',
+                    transition: 'all 0.5s ease'
+                  } : {}}
+                  onMouseEnter={(e) => {
+                    if (isMain) {
+                      e.currentTarget.style.backgroundPosition = '100% 0%';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (isMain) {
+                      e.currentTarget.style.backgroundPosition = '0% 0%';
+                    }
+                  }}
+                >
+                  <span className="flex items-center justify-center space-x-2">
+                    <span>{isMain ? 'Get Started Now' : 'Contact Us'}</span>
+                    <ArrowRight className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -172,7 +428,7 @@ export default function ServicesOverlay() {
       ]
     },
     {
-      title: "Industrial Automation & Control",
+      title: "Industrial Automation",
       icon: Cpu,
       imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center",
       description: "Revolutionizing industrial operations with state-of-the-art automation systems, PLC/SCADA integration, variable frequency drives, and smart energy management solutions. Enhancing efficiency while reducing operational costs through intelligent control systems.",
@@ -183,7 +439,8 @@ export default function ServicesOverlay() {
         "Smart Energy Management with real-time monitoring",
         "Process Automation and Control System Optimization",
         "Technical Expertise and Comprehensive Spare Parts Supply"
-      ]
+      ],
+      isMain: true,
     },
     {
       title: "Instrumentation & Calibration",
