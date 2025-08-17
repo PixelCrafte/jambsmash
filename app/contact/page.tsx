@@ -58,7 +58,7 @@ export default function ContactPage() {
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://jambstronics.com/contact" />
+        <link rel="canonical" href="https://jambsmash.com/co.zw" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

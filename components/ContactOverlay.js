@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import axios from 'axios';
 
 // Interactive map component (simplified version - in production you'd use actual map service)
 
@@ -198,15 +199,22 @@ const ContactForm = () => {
       setIsSubmitting(false);
       return;
     }
-    
-    // Simulate form submission
-    setTimeout(() => {
+    console.table(formData)
+    const response = await axios.post('/api/contact',
+      formData
+    );
+    if (response.status === 200) {
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormData({
-        name: '', email: '', phone: '', company: '', service: '', message: '', urgent: false
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: '',
+        message: '',
+        urgent: false
       });
-    }, 2000);
   };
 
   if (isSuccess) {
@@ -228,6 +236,7 @@ const ContactForm = () => {
       </div>
     );
   }
+}
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
