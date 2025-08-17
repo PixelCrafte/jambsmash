@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import axios from 'axios';
 
 // Interactive map component (simplified version - in production you'd use actual map service)
 

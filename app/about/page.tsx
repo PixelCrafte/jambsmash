@@ -34,9 +34,9 @@ export default function AboutPage() {
     setScrollPosition(scrollFraction);
   };
 
-  if (isLoading) {
+  /*if (isLoading) {
     return <EnhancedLoader />;
-  }
+  }*/
 
   return (
     <>

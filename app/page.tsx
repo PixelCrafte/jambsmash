@@ -54,10 +54,10 @@ function SEOHead() {
             "@graph": [
               {
                 "@type": "Organization",
-                "@id": "https://jambsmash.com/#organization",
+                "@id": "https://jambsmash.co.zw/#organization",
                 "name": "Jambsmash Electronics",
                 "description": "Leading provider of automation, instrumentation, security systems, and solar solutions in Zimbabwe",
-                "url": "https://jambsmash.com",
+                "url": "https://jambsmash.co.zw",
                 "logo": {
                   "@type": "ImageObject",
                   "url": "https://jambsmash.com/logo.png",
@@ -92,19 +92,19 @@ function SEOHead() {
               },
               {
                 "@type": "WebSite",
-                "@id": "https://jambsmash.com/#website",
-                "url": "https://jambsmash.com",
+                "@id": "https://jambsmash.co.zw/#website",
+                "url": "https://jambsmash.co.zw",
                 "name": "Jambsmash Electronics",
                 "inLanguage": "en-US",
                 "publisher": {
-                  "@id": "https://jambsmash.com/#organization"
+                  "@id": "https://jambsmash.co.zw/#organization"
                 }
               },
               {
                 "@type": "Service",
                 "serviceType": "Industrial Automation",
                 "provider": {
-                  "@id": "https://jambsmash.com/#organization"
+                  "@id": "https://jambsmash.co.zw/#organization"
                 },
                 "description": "Variable frequency drives, electric motors, and comprehensive automation solutions",
                 "areaServed": "ZW"
@@ -113,7 +113,7 @@ function SEOHead() {
                 "@type": "Service",
                 "serviceType": "Electronic Security Systems",
                 "provider": {
-                  "@id": "https://jambsmash.com/#organization"
+                  "@id": "https://jambsmash.co.zw/#organization"
                 },
                 "description": "CCTV, access control, fire monitoring, and hazardous gas detection systems",
                 "areaServed": "ZW"
@@ -161,9 +161,9 @@ export default function Home() {
     setScrollProgress(progress);
   };
 
-  if (isLoading) {
+  /*if (isLoading) {
     return <SceneLoader />
-  }
+  }*/
 
   return (
     <div className="relative w-screen h-screen bg-[#0a0a0a]">
