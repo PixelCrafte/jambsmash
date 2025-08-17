@@ -1,5 +1,6 @@
 'use client';
 import Image from "next/image";
+import Link from "next/link";
 
 import { 
   MapPin, 
@@ -8,7 +9,8 @@ import {
   Facebook, 
   Linkedin, 
   MessageCircle,
-  ArrowUp 
+  ArrowUp,
+  Instagram
 } from 'lucide-react';
 
 export default function Footer() {
@@ -114,9 +116,9 @@ export default function Footer() {
                   </div>
                   <div className="flex items-start space-x-4 text-brand-light hover:text-brand-orange transition-colors duration-300 group">
                     <Mail className="text-brand-orange w-5 h-5 mt-0.5 flex-shrink-0" />
-                    <a href="mailto:jambsmash20@gmail.com" className="text-gray-200 group-hover:text-brand-orange transition-colors duration-300 hover:underline">
-                      jambsmash20@gmail.com
-                    </a>
+                    <Link href="mailto:info@jambsmash.co.zw" className="text-gray-200 group-hover:text-brand-orange transition-colors duration-300 hover:underline">
+                      info@jambsmash.co.zw
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -152,13 +154,13 @@ export default function Footer() {
               <ul className="space-y-4">
                 {company.map((item) => (
                   <li key={item.name}>
-                    <a
+                    <Link
                       href={item.href}
                       className="group flex items-center space-x-3 text-gray-200 hover:text-brand-orange transition-all duration-300 hover:translate-x-2"
                     >
                       <span className="w-2 h-2 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-125"></span>
                       <span className="text-base font-normal">{item.name}</span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -188,24 +190,30 @@ export default function Footer() {
               <div>
                 <h5 className="text-lg font-bold text-brand-light mb-6">Connect With Us</h5>
                 <div className="flex items-center space-x-4">
-                  <a
-                    href="#"
+                  <Link
+                    href="https://www.facebook.com/profile.php?id=100076186261176"
                     className="group w-12 h-12 bg-gradient-to-br from-brand-orange/20 to-brand-accent/20 rounded-2xl flex items-center justify-center border border-brand-orange/30 hover:border-brand-orange hover:shadow-xl hover:shadow-brand-orange/30 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 active:scale-110 active:-translate-y-1"
                   >
                     <Facebook className="text-brand-orange w-5 h-5 group-hover:scale-110 group-active:scale-110 transition-transform duration-300" />
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="https://www.linkedin.com/in/jambsmash-investments-b44a93377"
                     className="group w-12 h-12 bg-gradient-to-br from-brand-orange/20 to-brand-accent/20 rounded-2xl flex items-center justify-center border border-brand-orange/30 hover:border-brand-orange hover:shadow-xl hover:shadow-brand-orange/30 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 active:scale-110 active:-translate-y-1"
                   >
                     <Linkedin className="text-brand-orange w-5 h-5 group-hover:scale-110 group-active:scale-110 transition-transform duration-300" />
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="https://www.instagram.com/jamb_smash/"
+                    className="group w-12 h-12 bg-gradient-to-br from-brand-orange/20 to-brand-accent/20 rounded-2xl flex items-center justify-center border border-brand-orange/30 hover:border-brand-orange hover:shadow-xl hover:shadow-brand-orange/30 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 active:scale-110 active:-translate-y-1"
+                  >
+                    <Instagram className="text-brand-orange w-5 h-5 group-hover:scale-110 group-active:scale-110 transition-transform duration-300" />
+                  </Link>
+                  <Link
+                    href="https://wa.me/263776641687"
                     className="group w-12 h-12 bg-gradient-to-br from-brand-orange/20 to-brand-accent/20 rounded-2xl flex items-center justify-center border border-brand-orange/30 hover:border-brand-orange hover:shadow-xl hover:shadow-brand-orange/30 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 active:scale-110 active:-translate-y-1"
                   >
                     <MessageCircle className="text-brand-orange w-5 h-5 group-hover:scale-110 group-active:scale-110 transition-transform duration-300" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

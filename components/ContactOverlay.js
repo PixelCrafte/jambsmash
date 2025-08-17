@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import axios from 'axios';
 
 // Interactive map component (simplified version - in production you'd use actual map service)
 
@@ -66,7 +67,7 @@ const InteractiveMapFinal = () => {
 
 // Animated contact info card
 const ContactInfoCard = ({ icon, title, info, links, delay = 0 }) => {
-  const [ref, inView] = useState(false);
+  const [inView, setInView] = useState(false);
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const ContactInfoCard = ({ icon, title, info, links, delay = 0 }) => {
 
     if (cardRef.current) observer.observe(cardRef.current);
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, inView]);
 
   return (
     <div 
@@ -198,15 +199,35 @@ const ContactForm = () => {
       setIsSubmitting(false);
       return;
     }
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      console.table(formData);
+      const response = await axios.post('/api/contact', formData);
+      
+      if (response.status === 200 && response.data.success) {
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          service: '',
+          message: '',
+          urgent: false
+        });
+        setErrors({});
+      } else {
+        throw new Error(response.data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({
-        name: '', email: '', phone: '', company: '', service: '', message: '', urgent: false
-      });
-    }, 2000);
+      
+      // Show error message to user
+      const errorMessage = error.response?.data?.error || error.message || 'Failed to send message. Please try again.';
+      setErrors({ submit: errorMessage });
+    }
   };
 
   if (isSuccess) {
@@ -360,6 +381,18 @@ const ContactForm = () => {
           This is an urgent project requiring immediate attention
         </label>
       </div>
+
+      {/* Error Display */}
+      {errors.submit && (
+        <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4">
+          <p className="text-red-400 text-sm flex items-center">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {errors.submit}
+          </p>
+        </div>
+      )}
 
       {/* Submit Button */}
       <button
