@@ -256,7 +256,7 @@ const ServiceCard = ({ title, description, icon: Icon, features, imageUrl, delay
                 <svg className="w-4 h-4 text-brand-dark animate-bounce-subtle" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
-                <span className="text-brand-dark font-bold text-xs uppercase tracking-wider">Featured</span>
+                <span className="text-brand-dark font-bold text-xs uppercase tracking-wider">Core Service</span>
               </div>
             </div>
           </div>
@@ -294,11 +294,11 @@ const ServiceCard = ({ title, description, icon: Icon, features, imageUrl, delay
             }`} />
           </div>
 
-          {/* Title Overlay */}
+          {/* Title Overlay style={isMain ? { filter: 'drop-shadow(0 0 20px rgba(220, 113, 62, 0.5))' } : {}}*/}
           <div className="absolute bottom-6 left-6 right-6">
             <h3 className={`text-2xl lg:text-3xl font-bold transition-all duration-500 ${
               isActive || isHovered ? 'text-brand-orange' : 'text-white'
-            }`} style={isMain ? { filter: 'drop-shadow(0 0 20px rgba(220, 113, 62, 0.5))' } : {}}>
+            }`}>
               {title}
             </h3>
             <div className={`h-1 bg-gradient-to-r from-brand-orange to-brand-accent rounded-full mt-3 transition-all duration-700 ${
@@ -414,20 +414,6 @@ export default function ServicesOverlay() {
 
   const services = [
     {
-      title: "Electronic Security Systems",
-      icon: Shield,
-      imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&crop=center",
-      description: "Comprehensive security solutions including HD CCTV with AI analytics, biometric access control, intruder detection, fire monitoring, and hazardous gas detection systems. Protecting your most valuable assets with cutting-edge technology and 24/7 monitoring capabilities.",
-      features: [
-        "HD & IP CCTV Systems with AI-powered analytics and facial recognition",
-        "Biometric & Smart Card Access Control with multi-factor authentication",
-        "Advanced Intruder Detection with smart sensors and mobile alerts",
-        "Fire & Hazardous Gas Monitoring with automated emergency response",
-        "24/7 Remote Monitoring and instant notification systems",
-        "Integration with existing security infrastructure"
-      ]
-    },
-    {
       title: "Industrial Automation",
       icon: Cpu,
       imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center",
@@ -483,7 +469,21 @@ export default function ServicesOverlay() {
         "Network Troubleshooting and Optimization",
         "End-to-End Communication System Integration"
       ]
-    }
+    },
+    {
+        title: "Electronic Security Systems",
+        icon: Shield,
+        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&crop=center",
+        description: "Comprehensive security solutions including HD CCTV with AI analytics, biometric access control, in  truder detection, fire monitoring, and hazardous gas detection systems. Protecting your most valuable assets with cutt  ing-edge technology and 24/7 monitoring capabilities.",
+        features: [
+          "HD & IP CCTV Systems with AI-powered analytics and facial recognition",
+          "Biometric & Smart Card Access Control with multi-factor authentication",
+          "Advanced Intruder Detection with smart sensors and mobile alerts",
+          "Fire & Hazardous Gas Monitoring with automated emergency response",
+          "24/7 Remote Monitoring and instant notification systems",
+          "Integration with existing security infrastructure"
+        ]
+     }
   ];
 
   return (
@@ -556,7 +556,7 @@ export default function ServicesOverlay() {
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-brand-orange to-brand-accent mx-auto rounded-full"></div>
           <p className="mt-8 max-w-3xl mx-auto text-xl text-brand-light/80 leading-relaxed">
-            From security systems to industrial automation, we deliver cutting-edge solutions 
+            From industrial automation, electrical and electronic systems to security and solar solutions, we deliver cutting-edge solutions 
             that drive innovation and efficiency across all sectors.
           </p>
         </div>
@@ -573,6 +573,7 @@ export default function ServicesOverlay() {
               delay={index * 200}
               isActive={activeService === index}
               onToggle={() => setActiveService(activeService === index ? null : index)}
+              isMain={service.isMain}
             />
           ))}
         </div>
@@ -663,7 +664,8 @@ export default function ServicesOverlay() {
               <div>
                 <div className="font-semibold text-brand-light mb-2">Phone</div>
                 <div>+263 773 755 716</div>
-                <div>+263 719 180 300</div>
+                <div>+263 773 755 717</div>
+                <div>+263 776 641 687</div>
               </div>
               <div>
                 <div className="font-semibold text-brand-light mb-2">Email</div>
