@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.jambsmash.co.zw
+
+# Sitemaps
+Sitemap: https://www.jambsmash.co.zw/sitemap.xml
