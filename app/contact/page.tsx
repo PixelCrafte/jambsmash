@@ -43,9 +43,9 @@ export default function ContactPage() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  if (isLoading) {
+  /*if (isLoading) {
     return <PremiumLoader />;
-  }
+  }*/
 
   return (
     <>

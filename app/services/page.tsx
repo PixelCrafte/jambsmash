@@ -26,9 +26,10 @@ export default function ServicesPage() {
     setScrollPosition(scrollFraction);
   };
 
+  /*
   if (isLoading) {
     return <Loader />
-  }
+  }*/
 
   return (
     <main className="w-screen h-screen relative overflow-hidden">

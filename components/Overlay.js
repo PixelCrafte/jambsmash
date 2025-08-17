@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
-import { MapPin } from "lucide-react";
+import { MapPin, PhoneCall, Sparkles } from "lucide-react";
 
 // Enhanced Overlay Component with world-class design
 export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 }) {
@@ -135,7 +135,8 @@ export default function EnhancedOverlay({ scrollProgress = 0, contentHeight = 0 
                 aria-label="Call us now at +263 773755716"
               >
                 <span className="relative z-10 flex items-center">
-                  📞 Call Now
+                  <PhoneCall className="w-5 h-5 text-brand-accent" />{" "}
+                  <span className="ml-2">Call Now</span>
                   <span className="ml-3 inline-block group-hover:rotate-12 group-active:rotate-12 transition-transform duration-300">✨</span>
                 </span>
               </a>
