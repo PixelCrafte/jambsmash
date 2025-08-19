@@ -140,7 +140,7 @@ function OrbitalSystem() {
   
   return (
     <group ref={groupRef}>
-      {/* Central Sun */}
+      {/* Central Sun 
       <mesh>
         <sphereGeometry args={[1, 32, 32]} />
         <meshStandardMaterial
@@ -148,7 +148,7 @@ function OrbitalSystem() {
           emissive="#DC713E"
           emissiveIntensity={1}
         />
-      </mesh>
+      </mesh>*/}
       
       {/* Orbiting Planets */}
       {orbits.map((orbit, i) => (
