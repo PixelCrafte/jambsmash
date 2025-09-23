@@ -430,7 +430,7 @@ export default function ServicesOverlay() {
     {
       title: "Industrial Automation",
       icon: Cpu,
-      imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center",
+      imageUrl: "/images/industrial-automation.webp",
       description: "Revolutionizing industrial operations with state-of-the-art automation systems, PLC/SCADA integration, variable frequency drives, and smart energy management solutions. Enhancing efficiency while reducing operational costs through intelligent control systems.",
       features: [
         "PLC & SCADA System Design, Integration and Programming",

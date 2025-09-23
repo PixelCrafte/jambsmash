@@ -697,7 +697,7 @@ export default function AboutOverlay() {
               "Innovation Strategist",
               "Technical Leadership"
             ]}
-            image="pride-mashiyani.jpg"
+            image="/images/pride-mashiyani.webp"
             delay={0}
           />
           {/*<DirectorCard 
