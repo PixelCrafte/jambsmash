@@ -1,0 +1,49 @@
+{
+  "format": "custom",
+  "id": "project",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "config": {
+          "label": "Title",
+          "placeholder": "Project Title"
+        },
+        "type": "Text"
+      },
+      "date": {
+        "config": {
+          "label": "Date",
+          "placeholder": "01/01/2026"
+        },
+        "type": "Date"
+      },
+      "image": {
+        "config": {
+          "constraint": {
+            "height": 400,
+            "width": 500
+          },
+          "label": "image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "description": {
+        "config": {
+          "label": "description",
+          "placeholder": "this is a jambsmash project"
+        },
+        "type": "Text"
+      }
+    }
+  },
+  "label": "project",
+  "repeatable": true,
+  "status": true
+}
