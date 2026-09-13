@@ -21,7 +21,7 @@ This project uses **pnpm** — don't use npm/yarn.
 
 ```bash
 pnpm add @prismicio/client @prismicio/next @prismicio/react
-pnpm add -D slice-machine-ui
+pnpm add -D slice-machine-ui @slicemachine/adapter-next
 ```
 
 - `@prismicio/client` — fetches documents from your Prismic repository.
@@ -31,6 +31,8 @@ pnpm add -D slice-machine-ui
   Component.
 - `slice-machine-ui` (dev only) — the local UI used to model custom types and
   push them to your Prismic repo.
+- `@slicemachine/adapter-next` (dev only) — tells Slice Machine this is a
+  Next.js project. Required for it to start at all.
 
 ---
 
@@ -48,10 +50,27 @@ pnpm add -D slice-machine-ui
 
 ## 3. Define the custom types
 
-Run Slice Machine locally to model content types:
+Create `slicemachine.config.json` at the project root (this project has none
+of its own dynamic page-builder Slices, so `libraries` can point at an empty
+folder — Slice Machine just needs the key present to start):
+
+```json
+{
+  "repositoryName": "jambsmash",
+  "adapter": "@slicemachine/adapter-next",
+  "libraries": [
+    "./slices"
+  ]
+}
+```
+
+Then launch Slice Machine using the binary from the `slice-machine-ui`
+dependency you just installed — **not** `pnpm dlx slicemachine`, which
+resolves to an unrelated package (`prismic-cli`) and just prints a generic
+help screen:
 
 ```bash
-pnpm dlx slicemachine
+pnpm exec start-slicemachine
 ```
 
 This opens a local UI (usually `http://localhost:9999`). The first run will ask

@@ -1,0 +1,32 @@
+{
+  "format": "custom",
+  "id": "gallery_image",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "gallery_image": {
+        "config": {
+          "constraint": {},
+          "label": "jambsmash image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "fig_caption_for_image": {
+        "config": {
+          "label": "fig caption for image",
+          "placeholder": "Enter Caption Here"
+        },
+        "type": "Text"
+      }
+    }
+  },
+  "label": "gallery_image",
+  "repeatable": true,
+  "status": true
+}
