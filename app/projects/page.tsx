@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { projects } from '@/lib/projectsData';
+import { createClient } from '@/prismicio';
+import { projects as fallbackProjects } from '@/lib/projectsData';
 
 export const metadata: Metadata = {
   title: 'Projects | Jambsmash Investments',
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
   },
 };
 
-function formatDate(dateString: string) {
+function formatDate(dateString: string | null) {
+  if (!dateString) return 'Undated';
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -27,10 +29,24 @@ function formatDate(dateString: string) {
   });
 }
 
-export default function ProjectsPage() {
-  const sortedProjects = [...projects].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+export default async function ProjectsPage() {
+  const client = createClient();
+  const documents = await client.getAllByType('project', {
+    orderings: { field: 'my.project.date', direction: 'desc' },
+  });
+
+  const sortedProjects = documents.length
+    ? documents.map((doc) => ({
+        id: doc.id,
+        title: doc.data.title ?? 'Untitled project',
+        date: doc.data.date,
+        image: doc.data.image.url ?? '',
+        alt: doc.data.image.alt ?? doc.data.title ?? 'Project image',
+        description: doc.data.description ?? '',
+      }))
+    : [...fallbackProjects]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .map((project) => ({ ...project, alt: project.title }));
 
   return (
     <div className="relative h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -59,7 +75,7 @@ export default function ProjectsPage() {
                 <div className="relative md:col-span-2 aspect-[4/3] md:aspect-auto">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={project.alt}
                     fill
                     sizes="(min-width: 768px) 40vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

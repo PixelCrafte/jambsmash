@@ -1,0 +1,7 @@
+{
+  "repositoryName": "kc4fnj9e",
+  "adapter": "@slicemachine/adapter-next",
+  "libraries": [
+    "./slices"
+  ]
+}
