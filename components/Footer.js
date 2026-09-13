@@ -28,7 +28,8 @@ export default function Footer() {
   const company = [
     { name: 'About Us', href: '/about' },
     { name: 'Our Team', href: '/about' },
-    { name: 'Projects', href: '/about' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Gallery', href: '/gallery' },
     //{ name: 'Careers', href: '/careers' },
     //{ name: 'News', href: '/news' },
   ];
