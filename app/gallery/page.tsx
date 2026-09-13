@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { galleryItems } from '@/lib/galleryData';
+import { createClient } from '@/prismicio';
+import { galleryItems as fallbackGalleryItems } from '@/lib/galleryData';
 
 export const metadata: Metadata = {
   title: 'Gallery | Jambsmash Investments',
@@ -19,7 +20,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const client = createClient();
+  const documents = await client.getAllByType('gallery_image');
+
+  const galleryItems = documents.length
+    ? documents.map((doc) => ({
+        id: doc.id,
+        image: doc.data.gallery_image.url ?? '',
+        alt: doc.data.gallery_image.alt ?? doc.data.fig_caption_for_image ?? 'Gallery image',
+        caption: doc.data.fig_caption_for_image ?? '',
+      }))
+    : fallbackGalleryItems.map((item) => ({
+        id: item.id,
+        image: item.image,
+        alt: item.caption,
+        caption: item.caption,
+      }));
+
   return (
     <div className="relative h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
       <Navbar />
@@ -47,7 +65,7 @@ export default function GalleryPage() {
                 <div className="relative w-full aspect-[4/3]">
                   <Image
                     src={item.image}
-                    alt={item.caption}
+                    alt={item.alt}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"

@@ -21,6 +21,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.prismic.io',
+      },
     ], // Added closing bracket
   },
 };
