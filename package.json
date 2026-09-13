@@ -10,6 +10,9 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@prismicio/client": "^7.22.0",
+    "@prismicio/next": "^2.3.1",
+    "@prismicio/react": "^3.4.1",
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
@@ -34,6 +37,7 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
+    "slice-machine-ui": "^2.21.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
