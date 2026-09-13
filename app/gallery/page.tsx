@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
       <Navbar />
 
       <main className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
